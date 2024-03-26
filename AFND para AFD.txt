@@ -1,0 +1,107 @@
+Estado inicial q0:
+	fecho-€({0}) = Fecho-€(trans(0,""))
+				 = {0} U fecho-€(trans(1,"") U trans(3,""))
+				 = {0,1,3,4} -> N1 novo estado inicial.
+
+
+trans | ""		+		-		0..9		.
+	0 | 1,3		- 		-		-			-			
+	1 | -		2		2		-			-
+	2 | 3		-		-		-			-
+	3 | 4		-		-		-			-
+	4 | -		-		-		5			-
+	5 | 4,6     -		-		-			-
+	6 | 7,10    -		-		-			-
+	7 | - 		-		-		-			8
+	8 | -		-		-		9			-
+	9 | 8,10	-		-		-			-
+   10 | -		-		-		-			-
+
+
+
+-> N1 = {0,1,3,4}
+
+	t'(N1,+) = Fecho-€(trans(0,+) U trans(1,+) U trans(3,+) U trans(4,+))
+			 = Fecho-€({} U {2} U {} U {})
+			 = {2,3,4} -> N2 novo estado, não final.
+
+	t'(N1,-) = Fecho-€(trans(0,-) U trans(1,-) U trans(3,-) U trans(4,-)) 
+			 = Fecho({} U {2} U {} U {})
+			 = {2,3,4} -> N2 mesmo estado acima.
+
+	t'(N1,0..9) = Fecho-€(trans(0,0..9) U trans(1,0..9) U trans(3,0..9) U trans(4,0..9))
+				= Fecho({} U {} U {} U {5})
+				= {4,5,6,7,10} -> N3, novo estado final.
+
+	t'(N1,.) = Fecho-€(trans(0,.) u trans(1,.) u trans(3,.) u trans(4,.))
+			 = Nenhum dos elementos de N1 passa pelo ponto.
+
+
+
+-> N2 = {2,3,4}
+		
+	t'(N2,+) = Fecho-€(trans(2,+) U trans(3,+) U trans(4,+))
+			 = Nenhum dos elementos passa por +
+
+	t'(N2,-) = Fecho-€(trans(2,-) U trans(3,-) U trans(4,-))
+			 = Nenhum dos elementos passa por -
+	
+	t'(N2,0..9) = Fecho-€(trans(2,0..9) U trans(3,0..9) U trans(4,0..9))
+			    = Fecho-€({} U {} U {5})
+				= {4,5,6,7,10} -> N3, já existe, é final
+
+	t'(N2,.) = Fecho-€(trans(2,.) u trans(3,.) u trans(4,.))
+			 = Nenhum dos elementos de N3 passa pelo ponto.
+
+
+-> N3 = {4,5,6,7,10} 
+
+	t'(N3,+) =  Fecho-€(trans(4,+) U trans(5,+) u trans(6,+) u trans(7,+) u trans(10,+))
+			 = Nenhum dos elementos N3 passa pelo 
+
+	t'(N3,-) = Fecho-€(trans(4,-) U trans(5,-) u trans(6,-) u trans(7,-) u trans(10,-))
+			 = Nenhum dos elementos N3 passa pelo 
+	
+	t'(N3,0..9) = Fecho-€(trans(4,0..9) U trans(5,0..9) u trans(6,0..9) u trans(7,0..9) u trans(10,0..9))
+				= Fecho-€({5} u {} u {} u {} u {})
+				= {4,5,6,7,10} -> N3 proprio estado, final
+
+	t'(N3,.) = Fecho-€(trans(4,.) U trans(5,.) u trans(6,.) u trans(7,.) u trans(10,.))
+			 = Fecho-€({} u {} u {} u {8} u {})
+			 = {8} -> N4 novo estado não final
+
+
+
+-> N4 = {8}
+
+	t'(N4,+) = Nenhum dos elementos passa por +
+
+	t'(N4,-) = Nenhum dos elementos passa por -
+
+	t'(N4,0..9) = Fecho-€(trans(8,0..9))
+				= {8,9,10} -> estado N5, final
+
+	t'(N4,.) = Nenhum dos elementos passa por .
+
+
+
+
+-> N5 = {8,9,10}
+
+	t'(N10,+) = Nenhum dos elementos passa por +
+
+	t'(N10,-) = nenhum dos elementos passa por -
+
+	t'(N10,0..9) = Fecho-€(trans(8,0..9) u trans(9,0..9) u trans(10,0..9))
+				 = Fecho-€({9} u {} u {})
+				 = {8,9,10} -> Proprio estado N5, final.
+
+	t'(N10,.) = nenhum dos elementos passa por .
+
+
+trans | +		- 		0..9		.
+	1 | N2		N2		N3			-
+	2 | -		-		N3			-
+	3 | -		-		N3			N4
+	4 | -		-		N5			-
+	5 | -		-		N5			-

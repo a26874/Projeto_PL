@@ -1,41 +1,43 @@
 import json
 import sys
 
+
 def main():
-    
+
     def reconhecerPalavra(palavra: str, lista_caminho: list):
         estado_atual: str = q0
         tam: int = len(palavra)
         i: int = 0
-        aux_caminho=[]
+        aux_caminho = []
         aux_caminho.append(palavra)
-        #Enquanto o tamanho da palavra for maior que i, é feito a determinação se ela é reconhecida ou não. Caso o estado_atual seja
-        #atualizado para erro (quando não é encontrado nenhum caminho por esse estado e pelo simbolo) esse mesmo é atuzliado para erro.
-        while(i < tam) and (estado_atual != "erro"):
+        # Enquanto o tamanho da palavra for maior que i, é feito a determinação se ela é reconhecida ou não. Caso o estado_atual seja
+        # atualizado para erro (quando não é encontrado nenhum caminho por esse estado e pelo simbolo) esse mesmo é atuzliado para erro.
+        while (i < tam) and (estado_atual != "erro"):
             simbolo_atual = palavra[i]
             if (simbolo_atual in delta[estado_atual]):
-                #Caso o simbolo esteja no delta daquele estado, é adicionado a uma lista de caminhos auxiliar e passado ao estado seguinte.
-                aux_caminho.extend([estado_atual,simbolo_atual])
+                # Caso o simbolo esteja no delta daquele estado, é adicionado a uma lista de caminhos auxiliar e passado ao estado seguinte.
+                aux_caminho.extend([estado_atual, simbolo_atual])
                 estado_atual = delta[estado_atual][simbolo_atual]
             else:
                 estado_atual = "erro"
             i = i+1
-        #Caso esteja no ultimo simbolo e o estado atual pertenca aos estados finais, adiciona o camihno a lista de caminhos e retorna true
+        # Caso esteja no ultimo simbolo e o estado atual pertenca aos estados finais, adiciona o camihno a lista de caminhos e retorna true
         lista_caminho.append(aux_caminho)
         if estado_atual in F:
-            return True,lista_caminho
+            return True, lista_caminho
         else:
-            return False,lista_caminho
-    
+            return False, lista_caminho
+
     if len(sys.argv) < 3:
-        print("Uso: python afd-main.py ARQUIVO_JSON [-graphviz] [-rec VALOR_REC]")
+        print(
+            "Uso: python reconhecerAFD.py ARQUIVO_JSON [-graphviz] [-rec VALOR_REC]")
         return
-        
+
     with open(str(sys.argv[1]), "r", encoding="utf-8") as ficheiro:
         af = json.load(ficheiro)
 
-    #Converter listas para sets
-    V= set(af["V"])
+    # Converter listas para sets
+    V = set(af["V"])
     Q = set(af["Q"])
     delta = af["delta"]
     q0 = af["q1"]
@@ -51,19 +53,21 @@ def main():
         bool = False
         resultado = False
         for i in sys.argv[2:]:
-            if(i == '-rec'): 
+            if (i == '-rec'):
                 bool = True
                 continue
-            if(bool):
-                resultado,lista_caminho = reconhecerPalavra(i,lista_caminho)
+            if (bool):
+                resultado, lista_caminho = reconhecerPalavra(i, lista_caminho)
                 for caminho in lista_caminho:
-                    if len(caminho) <=1:
-                        print(f"'Palavra:{caminho[0]}, caminho: Não tem caminho")
+                    if len(caminho) <= 1:
+                        print(
+                            f"'Palavra:{caminho[0]}, caminho: Não tem caminho")
                     else:
                         stringCaminho = ' -> '.join(caminho[1:])
-                        print(f"'Palavra:{caminho[0]}, caminho: {stringCaminho}")
+                        print(
+                            f"'Palavra:{caminho[0]}, caminho: {stringCaminho}")
                 lista_caminho.clear()
 
-            
+
 if __name__ == '__main__':
     main()

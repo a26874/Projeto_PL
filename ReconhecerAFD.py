@@ -45,10 +45,27 @@ def main():
     lista_caminho = []
 
     if '-graphviz' in sys.argv:
-        print('='*20)
-        print(f"{'EM DESENVOLVIMENTO':^20}")
-        print('='*20)
-
+        with open("./digraph/digraph.txt", "w", encoding="utf-8") as ficheiro:
+            ficheiro.write("digraph{\n")
+            for estado in F:
+                ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")
+            ficheiro.write("	node [shape = point]; initial;\n")
+            ficheiro.write("	node [shape = circle];\n")
+            ficheiro.write(f"	initial->{q0}\n")
+            for key,value in delta.items():
+                i = 0
+                string = ""
+                for keyv,valuev in value.items():
+                    if i == 0:
+                        string += f'	{key}->{valuev}[label="{keyv}"]; '
+                    elif i == len(value) - 1:
+                        string += f'{key}->{valuev}[label="{keyv}"];\n'
+                    else:
+                        string += f'{key}->{valuev}[label="{keyv}"]; '
+                    i += 1
+                ficheiro.write(string)
+            ficheiro.write("}")
+            
     if '-rec' in sys.argv:
         bool = False
         resultado = False

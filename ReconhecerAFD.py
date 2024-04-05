@@ -15,7 +15,8 @@ def main():
             lista_caminho (list): caminho realizado na analise da palavra
 
         Returns:
-            _type_: _description_
+            bool: False or True, dependendo se reconhece ou nao a palavra
+            lista_caminho: caminho realizado até a ultima instrução do reconhecimento
         """
         estado_atual: str = q0
         tam: int = len(palavra)

@@ -5,6 +5,18 @@ import sys
 def main():
 
     def reconhecerPalavra(palavra: str, lista_caminho: list):
+        """_summary_
+        
+        Função que recebe uma palavra e tenta reconhecê-la, se nao reconhecer, retorna o False, senao, retorna True.
+        A função envia tambem o caminho realizado pela função.
+        
+        Args:
+            palavra (str): palavra recebida do user
+            lista_caminho (list): caminho realizado na analise da palavra
+
+        Returns:
+            _type_: _description_
+        """
         estado_atual: str = q0
         tam: int = len(palavra)
         i: int = 0
@@ -28,9 +40,9 @@ def main():
         else:
             return False, lista_caminho
 
+
     if len(sys.argv) < 3:
-        print(
-            "Uso: python reconhecerAFD.py ARQUIVO_JSON [-graphviz] [-rec VALOR_REC]")
+        print("Uso: python ReconhecerAFD.py ARQUIVO_JSON [-graphviz] [-rec VALOR_REC]")
         return
 
     with open(str(sys.argv[1]), "r", encoding="utf-8") as ficheiro:
@@ -45,7 +57,7 @@ def main():
     lista_caminho = []
 
     if '-graphviz' in sys.argv:
-        with open("./digraph/digraph.txt", "w", encoding="utf-8") as ficheiro:
+        with open("./digraph/digraph.dot", "w", encoding="utf-8") as ficheiro:
             ficheiro.write("digraph{\n")
             for estado in F:
                 ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")

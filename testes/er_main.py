@@ -14,22 +14,10 @@ if len(sys.argv) == 2:
 	with open(sys.argv[1], "r") as f:
 		try:
 			arvore = json.load(f)
-			expression, _ = ExpReg.evaluate(arvore)
-			ExpReg.alphabet(expression)
+			expression, transitions = ExpReg.execução(arvore)
 			print(expression)
+			print(transitions)
 		except Exception as e:
 			print(e, file=sys.stderr)
 else:
 	print("falta indicar o ficheiro de entrada:", file=sys.sterr)
-
-# Exemplos de utilização
-# exemplo01.er.json
-# 
-# python er_main.py exemplo01.er.json
-# a|ab*
-# python er_main.py exemplo02.er.json
-# a(ε|b+)
-# python er_main.py exemplo03.er.json
-# a|(ab)*
-
-

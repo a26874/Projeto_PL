@@ -8,13 +8,19 @@ def fecho_epsilon(estados, transicoes):
     fila = deque(estados)
     while fila:
         estado = fila.popleft()
-        if 'ε' in transicoes[estado]:
-            estados_epsilon = transicoes[estado]['ε']
+
+        if '€' in transicoes[estado]:
+            estados_epsilon = transicoes[estado]['€']
             for estado_epsilon in estados_epsilon:
                 if estado_epsilon not in fecho_epsilon_set:
                     fecho_epsilon_set.add(estado_epsilon)
                     fila.append(estado_epsilon)
+
     return list(fecho_epsilon_set)
+
+# Função para realizar a união de conjuntos de estados
+def unir_estados(estado1, estado2):
+    return tuple(sorted(set(estado1) | set(estado2)))
 
 # Função para mover-se de um conjunto de estados dado um símbolo de entrada
 def mover(estados, simbolo, transicoes):
@@ -27,7 +33,7 @@ def mover(estados, simbolo, transicoes):
 # Função principal para converter um AFND para um AFD
 def converter_afnd_para_afd(afnd):
     # Carregar AFND do JSON
-    with open(AFND, 'r') as f:
+    with open(afnd, 'r', encoding='utf-8') as f:
         afnd_data = json.load(f)
 
     # Inicialização do AFD
@@ -58,29 +64,30 @@ def converter_afnd_para_afd(afnd):
 
     # Construir AFD em formato JSON
     afd_json = {
-        "alfabeto": alfabeto,
-        "estados": [str(i) for i in range(len(estados_afd))],
-        "estado_inicial": str(mapa_estados_afd[tuple(estado_inicial_afd)]),
-        "transicoes": {
+        "alphabet": alfabeto,
+        "states": [str(i) for i in range(len(estados_afd))],
+        "initial_state": str(mapa_estados_afd[tuple(estado_inicial_afd)]),
+        "transitions": {
             str(mapa_estados_afd[estado]): {simbolo: str(mapa_estados_afd[tuple(estado_alvo)]) for simbolo, estado_alvo in transicoes.items()}
             for estado, transicoes in transicoes_afd.items()
-        }
+        },
+        "final_states": [str(mapa_estados_afd[tuple(estado)]) for estado in estados_afd if any(ef in estado for ef in estados_finais_afnd)]
     }
 
     return afd_json
 
 # Função principal do programa
 def principal():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         print("Uso: python afnd_main.py afnd.json -saida AFD.json")
         return
 
-    arquivo_afnd = sys.argv[1]
-    arquivo_saida = sys.argv[3]
-    afd_json = converter_afnd_para_afd(arquivo_afnd)
+    infile = sys.argv[1]
+    outfile = sys.argv[3]
+    afd_json = converter_afnd_para_afd(infile)
  
-    # Escrever o JSON do AFD no arquivo de saída "AFD.json"
-    with open("AFD.json", 'w') as f:
+    # Escrever o JSON do AFD no ficheiro de saída "AFD.json"
+    with open(outfile, 'w', encoding='utf-8') as f:
         json.dump(afd_json, f, indent=4)
 
 if __name__ == "__main__":

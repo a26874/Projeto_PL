@@ -83,7 +83,7 @@ def principal():
         return
 
     infile = sys.argv[1]
-    outfile = f".\json_novos\{sys.argv[3]}"
+    outfile = f".\json_novos\{sys.argv[3]}.json"
     afd_json = converter_afnd_para_afd(infile)
  
     # Escrever o JSON do AFD no ficheiro de saída "AFD.json"

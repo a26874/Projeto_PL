@@ -1,56 +1,94 @@
 class ExpReg:
-    #recebe 2 dicionarios de transição,renumeia os estados e coloca um novo estado atras deles e a frente com fecho €.
     char = 65
     transições_global = {}
     alfabeto = []
     def unico_simbolo(simbol):
+        """_summary_
+            Esta função recebe um caracter e cria as transições
+            Ela é chamada quando o argumento das outras funções so tem um caracter
+            ex: ->a ; ->a|bc ab*|d<- 
+        Args:
+            simbol (str): caracter
+
+        Returns:
+            transição: transição do caracter
+        """
         if simbol not in ExpReg.alfabeto:
             ExpReg.alfabeto.append(simbol)
         transição = {'q0':{f'{simbol}':['q1']},'inicial':["q0"],'final':["q1"]}
         return transição
 
     def cria_altera_dicionario(transição,estados,nome_transição):
-        keysdicionario = {}
+        """_summary_
+            Esta função recebe as transições nao renomeadas e cria sua renomeação
+        Args:
+            transição (dict): transições nao traduzidas
+            estados (int): numero de estados
+            nome_transição (dict): dicionario das renomeações
+
+        Returns
+            keys_dicionario: dicionario da renomeação
+            estados: numero final de estados criados
+        """
+        keys_dicionario = {}
         for key in transição.keys():
             if key != 'final' and key != 'inicial':
-                if key not in keysdicionario.keys():
-                    keysdicionario[key] = f'{nome_transição}{estados}'
+                if key not in keys_dicionario.keys():
+                    keys_dicionario[key] = f'{nome_transição}{estados}'
                     estados += 1
             else:
                 for valor in transição[key]:
-                    if valor not in keysdicionario.keys():
-                        keysdicionario[valor] = f'{nome_transição}{estados}'
+                    if valor not in keys_dicionario.keys():
+                        keys_dicionario[valor] = f'{nome_transição}{estados}'
                         estados += 1
-        return  keysdicionario,estados
+        return  keys_dicionario,estados
 
-    def renomeação_estados(transições,keysdicionario):
+    def renomeação_estados(transições,keys_dicionario):
+        """_summary_
+        Esta função recebe as transições de um estado e cria um dicionario com as renomeações
+        Returns:
+            novo_dicionario: transições renomeadas
+        """
         transitor = {}
         novo_dicionario = {}
         for key, value in transições.items():
             if key != 'final' and key != 'inicial':
-                chave = keysdicionario[key]
+                chave = keys_dicionario[key]
                 for simbolo, lista in value.items():
                     transitor[simbolo] = []
                     for estado in lista:
-                        transitor[simbolo].append(keysdicionario[estado])
+                        transitor[simbolo].append(keys_dicionario[estado])
                     novo_dicionario[chave] = transitor.copy()
                     transitor.clear()
         return novo_dicionario
 
     def existe_transições_global(arg):
+        """_summary_
+            Verifica se o argumento ja foi resolvido e guardado no dicionario global
+            Se nao estiver, quer dizer que é um unico simbolo
+            Verifica-se se tiver parenteses a mais, isto acontece devido a prioridade
+            pois pode receber por exemplo (ab), isto para realizar (ab)*
+        Returns:
+            transições: transições do argumento
+        """
         if arg.count("(") > (arg.count("*")+ arg.count("+")+arg.count("|")):
             if f'{arg}'.lstrip('(').rstrip(')') in ExpReg.transições_global.keys():
-                transições_um = ExpReg.transições_global[f'{arg}'.lstrip('(').rstrip(')')]
+                transições = ExpReg.transições_global[f'{arg}'.lstrip('(').rstrip(')')]
             else:
-                transições_um = ExpReg.unico_simbolo(args[0])
+                transições = ExpReg.unico_simbolo(f'{arg}'.lstrip('(').rstrip(')'))
         else:
             if f'{arg}' in ExpReg.transições_global.keys():
-                transições_um = ExpReg.transições_global[f'{arg}']
+                transições = ExpReg.transições_global[f'{arg}']
             else:
-                transições_um = ExpReg.unico_simbolo(arg)
-        return transições_um
+                transições = ExpReg.unico_simbolo(f'{arg}')
+        return transições
 
     def alt(args):      
+        """_summary_
+            Função que realiza o fecho alternativo e cria suas transições
+        Args:
+            args (str): recebe a expressão regular dividada em 2 ex: a|ab -> args[0] = a e args[1] = ab 
+        """
         estados = 0
         novo_dicionario_um = {}
         novo_dicionario_dois = {}
@@ -118,6 +156,11 @@ class ExpReg:
         return f'{args[0]}|{args[1]}'
 
     def seq(args):
+        """_summary_
+            Função que realiza o fecho sequencia e cria suas transições
+        Args:
+            args (str): recebe a expressão regular dividada em 2 ex: ab -> args[0] = a e args[1] = b 
+        """
         estados = 0
         novo_dicionario_um = {}
         novo_dicionario_dois = {}
@@ -181,6 +224,11 @@ class ExpReg:
         return f'{args[0]}{args[1]}'
 
     def kle(args):
+        """_summary_
+            Função que realiza o fecho kleene e cria suas transições
+        Args:
+            args (str): recebe a expressão regular ex: args = [ab]
+        """
         estados = 0
         keys_dicionario = {}
         novo_dicionario = {}
@@ -217,6 +265,11 @@ class ExpReg:
             return f'{args[0]}*'
 
     def trans(args):
+        """_summary_
+            Função que realiza o fecho transitivo e cria suas transições
+        Args:
+            args (str): recebe a expressão regular ex: args = [ab]
+        """
         estados = 0
         keys_dicionario = {}
         novo_dicionario = {}
@@ -252,6 +305,11 @@ class ExpReg:
             return f'{args[0]}+'
 
     def opc(args):
+        """_summary_
+            Função que realiza o fecho opcional e cria suas transições
+        Args:
+            args (str): recebe a expressão regular ex: args = [ab]
+        """
         estados = 0
         keys_dicionario = {}
         novo_dicionario = {}

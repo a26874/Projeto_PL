@@ -2,8 +2,20 @@ import json
 from collections import deque
 import sys
 
-# Função para calcular o fecho epsilon de um conjunto de estados
+
 def fecho_epsilon(estados, transicoes):
+    """Calcula o fecho epsilon de um conjunto de estados num autômato.
+
+    Args:
+        estados (list): Uma lista de estados do autômato.
+        transicoes (dict): Um dicionário que representa as transições do autômato.
+            As chaves são os estados e os valores são outro dicionário que mapeia
+            símbolos de transição para listas de estados alcançáveis.
+
+    Returns:
+        list: Uma lista com  todos os estados possiveis de alcançar a partir dos estados
+        de entrada, considerando as transições epsilon.
+    """
     fecho_epsilon_set = set(estados)
     fila = deque(estados)
     while fila:
@@ -18,20 +30,51 @@ def fecho_epsilon(estados, transicoes):
 
     return list(fecho_epsilon_set)
 
-# Função para realizar a união de conjuntos de estados
+
+
 def unir_estados(estado1, estado2):
+    """Une dois estados num  único estado.
+
+    Args:
+        estado1 (iterable): O primeiro estado a ser unido.
+        estado2 (iterable): O segundo estado a ser unido.
+
+    Returns:
+        tuple: Um novo estado resultante da união dos dois estados de entrada.
+    """
     return tuple(sorted(set(estado1) | set(estado2)))
 
-# Função para mover-se de um conjunto de estados dado um símbolo de entrada
+
+
 def mover(estados, simbolo, transicoes):
+    """Realiza a operação de mover em um conjunto de estados através de um símbolo de entrada.
+
+    Args:
+        estados (list): Lista de estados a serem movidos.
+        simbolo (str): Símbolo de entrada para a transição.
+        transicoes (dict): Dicionário que mapeia estados para transições.
+
+    Returns:
+        list: Uma lista com  os estados possiveis de alcancar a partir dos estados de entrada
+        através do símbolo de entrada fornecido.
+    """
     estados_movidos = set()
     for estado in estados:
         if simbolo in transicoes[estado]:
             estados_movidos.update(transicoes[estado][simbolo])
     return list(estados_movidos)
 
+
 # Função principal para converter um AFND para um AFD
 def converter_afnd_para_afd(afnd):
+    """Converte um autômato finito não determinístico (AFND) em um autômato finito determinístico (AFD).
+
+    Args:
+        afnd (str): O caminho do arquivo JSON que contém a descrição do AFND.
+
+    Returns:
+        dict: Um dicionário que representa o autômato finito determinístico (AFD) resultante da conversão.
+    """
     # Carregar AFND do JSON
     with open(afnd, 'r', encoding='utf-8') as f:
         afnd_data = json.load(f)
@@ -75,6 +118,7 @@ def converter_afnd_para_afd(afnd):
     }
 
     return afd_json
+
 
 # Função principal do programa
 def principal():

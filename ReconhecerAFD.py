@@ -43,8 +43,8 @@ def main():
 
 
     if len(sys.argv) < 3:
-        print("Uso: python ReconhecerAFD.py ARQUIVO_JSON [-graphviz] [-rec VALOR_REC]")
-        return
+        print("Uso: python ReconhecerAFD.py <ARQUIVO_JSON> [-graphviz] [nome do ficheiro] [-rec VALOR_REC]")
+        return 0
 
     with open(str(sys.argv[1]), "r", encoding="utf-8") as ficheiro:
         af = json.load(ficheiro)
@@ -53,31 +53,53 @@ def main():
     V = set(af["V"])
     Q = set(af["Q"])
     delta = af["delta"]
-    q0 = af["q1"]
+    q0 = af["q0"]
     F = set(af["F"])
     lista_caminho = []
 
     if '-graphviz' in sys.argv:
-        with open("./digraph/digraph.dot", "w", encoding="utf-8") as ficheiro:
-            ficheiro.write("digraph{\n")
-            for estado in F:
-                ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")
-            ficheiro.write("	node [shape = point]; initial;\n")
-            ficheiro.write("	node [shape = circle];\n")
-            ficheiro.write(f"	initial->{q0}\n")
-            for key,value in delta.items():
-                i = 0
-                string = ""
-                for keyv,valuev in value.items():
-                    if i == 0:
-                        string += f'	{key}->{valuev}[label="{keyv}"]; '
-                    elif i == len(value) - 1:
-                        string += f'{key}->{valuev}[label="{keyv}"];\n'
-                    else:
-                        string += f'{key}->{valuev}[label="{keyv}"]; '
-                    i += 1
-                ficheiro.write(string)
-            ficheiro.write("}")
+        if sys.argv[3] != '-graphviz' and sys.argv[3] != '-rec':
+            with open(f"./digraph/{sys.argv[3]}.dot", "w", encoding="utf-8") as ficheiro:
+                ficheiro.write("digraph{\n")
+                for estado in F:
+                    ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")
+                ficheiro.write("	node [shape = point]; initial;\n")
+                ficheiro.write("	node [shape = circle];\n")
+                ficheiro.write(f"	initial->{q0}\n")
+                for key,value in delta.items():
+                    i = 0
+                    string = ""
+                    for keyv,valuev in value.items():
+                        if i == 0:
+                            string += f'	{key}->{valuev}[label="{keyv}"]; '
+                        elif i == len(value) - 1:
+                            string += f'{key}->{valuev}[label="{keyv}"];\n'
+                        else:
+                            string += f'{key}->{valuev}[label="{keyv}"]; '
+                        i += 1
+                    ficheiro.write(string)
+                ficheiro.write("}")
+        else:
+            with open("./digraph/digraph.dot", "w", encoding="utf-8") as ficheiro:
+                ficheiro.write("digraph{\n")
+                for estado in F:
+                    ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")
+                ficheiro.write("	node [shape = point]; initial;\n")
+                ficheiro.write("	node [shape = circle];\n")
+                ficheiro.write(f"	initial->{q0}\n")
+                for key,value in delta.items():
+                    i = 0
+                    string = ""
+                    for keyv,valuev in value.items():
+                        if i == 0:
+                            string += f'	{key}->{valuev}[label="{keyv}"]; '
+                        elif i == len(value) - 1:
+                            string += f'{key}->{valuev}[label="{keyv}"];\n'
+                        else:
+                            string += f'{key}->{valuev}[label="{keyv}"]; '
+                        i += 1
+                    ficheiro.write(string)
+                ficheiro.write("}")
             
     if '-rec' in sys.argv:
         bool = False

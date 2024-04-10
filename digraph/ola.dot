@@ -1,0 +1,18 @@
+digraph {
+    node [shape = doublecircle]; q1;
+    node [shape = point]; initial;
+    node [shape = circle];
+    initial -> q0;
+    D0 -> D2 [label="a"]; 
+    D1 -> D0 [label="€"]; D1 -> D3 [label="€"];     
+    D10 -> D8 [label="€"];     
+    D11 -> D6 [label="€"];     
+    D2 -> D0 [label="€"]; D2 -> D3 [label="€"];     
+    D3 -> q1 [label="€"];     
+    D4 -> D10 [label="a"];     D5 -> D4 [label="€"];     
+    D6 -> q1 [label="€"];     
+    D7 -> D9 [label="b"];     
+    D8 -> D7 [label="€"]; D8 -> D11 [label="€"]; 
+    D9 -> D7 [label="€"];     D9 -> D11 [label="€"]; 
+    q0 -> D1 [label="€"];     q0 -> D5 [label="€"]; 
+}

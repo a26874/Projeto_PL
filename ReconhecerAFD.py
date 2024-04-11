@@ -113,11 +113,13 @@ def main():
                 for caminho in lista_caminho:
                     if len(caminho) <= 1:
                         print(
-                            f"'Palavra:{caminho[0]}, caminho: Não tem caminho")
+                            f"'Palavra:{caminho[0]}, caminho: Não tem caminho, Resultado:Não reconhece {caminho[0]}")
                     else:
                         stringCaminho = ' -> '.join(caminho[1:])
-                        print(
-                            f"'Palavra:{caminho[0]}, caminho: {stringCaminho}")
+                        if resultado:
+                            print(f"'Palavra:{caminho[0]}, caminho: {stringCaminho},Resultado:Reconhece {caminho[0]}")
+                        else:
+                            print(f"'Palavra:{caminho[0]}, caminho: {stringCaminho},Resultado:Não reconhece {caminho[0]}")
                 lista_caminho.clear()
 
 

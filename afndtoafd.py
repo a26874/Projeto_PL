@@ -80,11 +80,11 @@ def converter_afnd_para_afd(afnd):
         afnd_data = json.load(f)
 
     # Inicialização do AFD
-    alfabeto = afnd_data['alphabet']
-    estado_inicial = afnd_data['initial_state']
-    estados_afnd = afnd_data['states']
-    transicoes_afnd = afnd_data['transitions']
-    estados_finais_afnd = afnd_data['final_states']
+    alfabeto = afnd_data['V']
+    estado_inicial = afnd_data['q0']
+    estados_afnd = afnd_data['Q']
+    transicoes_afnd = afnd_data['delta']
+    estados_finais_afnd = afnd_data['F']
     estados_afd = []
     transicoes_afd = {}
     estado_inicial_afd = fecho_epsilon([estado_inicial], transicoes_afnd)
@@ -107,19 +107,20 @@ def converter_afnd_para_afd(afnd):
 
     # Construir AFD em formato JSON
     afd_json = {
-        "alphabet": alfabeto,
-        "states": [str(i) for i in range(len(estados_afd))],
-        "initial_state": str(mapa_estados_afd[tuple(estado_inicial_afd)]),
-        "transitions": {
+        "V": alfabeto,
+        "Q": [str(i) for i in range(len(estados_afd))],
+        "q0": str(mapa_estados_afd[tuple(estado_inicial_afd)]),
+        "delta": {
             str(mapa_estados_afd[estado]): {simbolo: str(mapa_estados_afd[tuple(estado_alvo)]) for simbolo, estado_alvo in transicoes.items()}
             for estado, transicoes in transicoes_afd.items()
         },
-        "final_states": [str(mapa_estados_afd[tuple(estado)]) for estado in estados_afd if any(ef in estado for ef in estados_finais_afnd)]
+        "F": [str(mapa_estados_afd[tuple(estado)]) for estado in estados_afd if any(ef in estado for ef in estados_finais_afnd)]
     }
 
     return afd_json
 
 
+# Função principal do programa
 # Função principal do programa
 def principal():
     if len(sys.argv) < 4:
@@ -127,10 +128,10 @@ def principal():
         return
 
     infile = sys.argv[1]
-    outfile = f".\json_novos\{sys.argv[3]}.json"
+    outfile = sys.argv[3]  # Use the provided output filename directly
     afd_json = converter_afnd_para_afd(infile)
  
-    # Escrever o JSON do AFD no ficheiro de saída "AFD.json"
+    # Escrever o JSON do AFD no ficheiro de saída especificado
     with open(outfile, 'w', encoding='utf-8') as f:
         json.dump(afd_json, f, indent=4)
 

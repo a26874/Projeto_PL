@@ -62,4 +62,4 @@ if len(sys.argv) >= 2:
 			print(e, file=sys.stderr)
 else:
 	print("falta indicar o ficheiro de entrada:", file=sys.sterr)
-	print("Uso: python er_main.py <ARQUIVO_JSON> [nome ficheiro]")
+	print("Uso: python er_main.py <ARQUIVO_JSON> [nome_ficheiro]")

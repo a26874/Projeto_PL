@@ -43,7 +43,7 @@ def main():
 
 
     if len(sys.argv) < 3:
-        print("Uso: python ReconhecerAFD.py <ARQUIVO_JSON> [-graphviz] [nome do ficheiro] [-rec VALOR_REC]")
+        print("Uso: python ReconhecerAFD.py <ARQUIVO_JSON> <[<-graphviz> [nome do ficheiro]] [-rec VALOR_REC]>")
         return 0
 
     with open(str(sys.argv[1]), "r", encoding="utf-8") as ficheiro:

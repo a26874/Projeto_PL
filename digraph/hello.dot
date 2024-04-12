@@ -1,6 +1,6 @@
 digraph{
-	node [shape = doublecircle]; q5;
 	node [shape = doublecircle]; q3;
+	node [shape = doublecircle]; q5;
 	node [shape = point]; initial;
 	node [shape = circle];
 	initial->q1

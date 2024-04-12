@@ -8,7 +8,7 @@
 from er_eval import ExpReg
 import sys
 import json
-
+import os
 
 if len(sys.argv) >= 2:
 	with open(sys.argv[1], "r") as f:
@@ -51,6 +51,9 @@ if len(sys.argv) >= 2:
 			json += f'"q0" :[{", ".join(q0_with_quotes)}],\n'
 			json += f'"F" :[{", ".join(F_with_quotes)}]\n'
 			json += "}"
+			directory = ".\json_novos"
+			if not os.path.exists(directory):
+				os.makedirs(directory)
 			if len(sys.argv) == 3:
 				nome = sys.argv[2]
 				with open(f"./json_novos/{nome}.json", "w", encoding="utf-8") as ficheiro:

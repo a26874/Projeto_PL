@@ -185,7 +185,6 @@ class ExpReg:
             chave = keys_dicionario_um[value]
             novo_dicionario_um['final'].append(chave)
         novo_dicionario_final.update(novo_dicionario_um)
-
         # " ---------------------------------------------------------------------------"
 
         # " ----------------------      dois        -------------------------------------------"

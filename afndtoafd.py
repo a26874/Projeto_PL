@@ -1,7 +1,7 @@
 import json
 from collections import deque
 import sys
-
+import os
 
 def fecho_epsilon(estados, transicoes):
     """Calcula o fecho epsilon de um conjunto de estados num autômato.
@@ -123,12 +123,15 @@ def converter_afnd_para_afd(afnd):
 # Função principal do programa
 # Função principal do programa
 def principal():
-    if len(sys.argv) < 4:
-        print("Uso: python afnd_main.py afnd.json -saida nome_ficheiro")
+    if len(sys.argv) < 2:
+        print("Uso: python afnd_main.py afnd.json [nome_ficheiro]")
         return
-
     infile = sys.argv[1]
-    outfile = sys.argv[3]  # Use the provided output filename directly
+    directory = ".\json_novos"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    if len(sys.argv) == 3: outfile = f".\json_novos\{sys.argv[2]}.json" 
+    else: outfile = f".\json_novos\AFD.json"
     afd_json = converter_afnd_para_afd(infile)
  
     # Escrever o JSON do AFD no ficheiro de saída especificado

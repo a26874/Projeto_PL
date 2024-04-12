@@ -1,6 +1,6 @@
 import json
 import sys
-
+import os
 
 def main():
 
@@ -58,27 +58,32 @@ def main():
     lista_caminho = []
 
     if '-graphviz' in sys.argv:
-        if sys.argv[3] != '-graphviz' and sys.argv[3] != '-rec':
-            with open(f"./digraph/{sys.argv[3]}.dot", "w", encoding="utf-8") as ficheiro:
-                ficheiro.write("digraph{\n")
-                for estado in F:
-                    ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")
-                ficheiro.write("	node [shape = point]; initial;\n")
-                ficheiro.write("	node [shape = circle];\n")
-                ficheiro.write(f"	initial->{q0}\n")
-                for key,value in delta.items():
-                    i = 0
-                    string = ""
-                    for keyv,valuev in value.items():
-                        if i == 0:
-                            string += f'	{key}->{valuev}[label="{keyv}"]; '
-                        elif i == len(value) - 1:
-                            string += f'{key}->{valuev}[label="{keyv}"];\n'
-                        else:
-                            string += f'{key}->{valuev}[label="{keyv}"]; '
-                        i += 1
-                    ficheiro.write(string)
-                ficheiro.write("}")
+        if len(sys.argv) != 3: 
+            if sys.argv[3] != '-graphviz' and sys.argv[3] != '-rec':
+                directory = ".\digraph"
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+                with open(f"./digraph/{sys.argv[3]}.dot", "w", encoding="utf-8") as ficheiro:
+                    ficheiro.write("digraph{\n")
+                    for estado in F:
+                        ficheiro.write(f"	node [shape = doublecircle]; {estado};\n")
+                    ficheiro.write("	node [shape = point]; initial;\n")
+                    ficheiro.write("	node [shape = circle];\n")
+                    ficheiro.write(f"	initial->{q0}\n")
+                    for key,value in delta.items():
+                        i = 0
+                        string = ""
+                        for keyv,valuev in value.items():
+                            if i == 0:
+                                string += f'	{key}->{valuev}[label="{keyv}"]; '
+                            elif i == len(value) - 1:
+                                string += f'{key}->{valuev}[label="{keyv}"];\n'
+                            else:
+                                string += f'{key}->{valuev}[label="{keyv}"]; '
+                            i += 1
+                        ficheiro.write(string)
+                    ficheiro.write("}")
+            else: print("Uso: python ReconhecerAFD.py <ARQUIVO_JSON> <[<-graphviz> [nome do ficheiro]] [-rec VALOR_REC]>")
         else:
             with open("./digraph/digraph.dot", "w", encoding="utf-8") as ficheiro:
                 ficheiro.write("digraph{\n")

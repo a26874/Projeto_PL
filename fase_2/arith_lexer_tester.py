@@ -1,6 +1,6 @@
 from arith_lexer import ArithLexer
 
-exemplos = ["2 + 3","-a","y + a","-a + 42"]
+exemplos = ["2 + 0.563","-a","y + a","-a + 42.0"]
 
 for frase in exemplos:
 	print(f"----------------------")

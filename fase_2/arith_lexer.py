@@ -11,14 +11,14 @@ class ArithLexer:
         self.lexer = None
 
     #transformamos o que for numero em inteiro em vez de string
-    def t_numInt(self, t):
-        r"[0-9]+"
-        t.value = int (t.value)
-        return t
-    
     def t_numF(self, t):
         r"[0-9]+\.[0-9]+"
         t.value = float (t.value)
+        return t
+   
+    def t_numInt(self, t):
+        r"[0-9]+"
+        t.value = int (t.value)
         return t
     
     def t_id(self, t):

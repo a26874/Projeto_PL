@@ -27,11 +27,11 @@ class Lexer:
         return t
     
     def t_comentarioOne(self,t):
-        r"−− .*"
+        r"--.*\n"
         return t
         
     def t_comentarioMult(self,t):
-        r"\{−  .* −\}"
+        r"{--(.|\n)*--}"
         return t
     
     def t_id(self,t):

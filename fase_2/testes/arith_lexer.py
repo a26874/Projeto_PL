@@ -4,7 +4,7 @@ import ply.lex as plex
 class ArithLexer:
     
     tokens= ("numInt","numF","id")
-    literals = ['*', '+', '(', ')','-','/']
+    literals = ['*','/', '+', '(', ')','-']
     t_ignore = " "
 
     def __init__(self):

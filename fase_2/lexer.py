@@ -38,7 +38,7 @@ class Lexer:
 
     def t_texto(self,t):
         r"\"[^\"]*\""
-        #t.value = t.value[1:-1]
+        t.value = t.value[1:-1]
         return t
        
     def t_numF(self, t):

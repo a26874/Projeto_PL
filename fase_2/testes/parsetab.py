@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'left+-left*/aleatorio comentarioMult comentarioOne entrada escrever fim fold funcao id map numF numInt texto Z :  LstV \';\'          LstV :  V           LstV : LstV \';\' V  V : id \'=\' E  V : escrever "(" id ")"   E : E \'+\' T  E : E \'-\' T  E : T  T : T \'/\' F  T : T \'*\' F  T : F   F : \'(\' E \')\'   F : numInt    F : numF    F : id    F : id "[" numInt "]" '
+_lr_signature = 'left+-left*/aleatorio comentarioMult comentarioOne entrada escrever fim fold funcao id map numF numInt texto Z :  LstV \';\'          LstV :  V           LstV : LstV \';\' V  V : id \'=\' E  Texto :  texto   Texto : id   Texto : Texto "<" ">" Texto   V : escrever "(" Texto ")"   E : E \'+\' T  E : E \'-\' T  E : T  T : T \'/\' F  T : T \'*\' F  T : F   F : \'(\' E \')\'   F : numInt    F : numF    F : id    F : id "[" numInt "]" '
     
-_lr_action_items = {'id':([0,6,7,8,14,19,20,21,22,],[4,4,10,17,10,10,10,10,10,]),'escrever':([0,6,],[5,5,]),'$end':([1,6,],[0,-1,]),';':([2,3,9,10,11,12,13,15,16,24,26,27,28,29,30,31,],[6,-2,-3,-15,-4,-8,-11,-13,-14,-5,-6,-7,-9,-10,-12,-16,]),'=':([4,],[7,]),'(':([5,7,14,19,20,21,22,],[8,14,14,14,14,14,14,]),'numInt':([7,14,18,19,20,21,22,],[15,15,25,15,15,15,15,]),'numF':([7,14,19,20,21,22,],[16,16,16,16,16,16,]),'/':([10,12,13,15,16,26,27,28,29,30,31,],[-15,21,-11,-13,-14,21,21,-9,-10,-12,-16,]),'*':([10,12,13,15,16,26,27,28,29,30,31,],[-15,22,-11,-13,-14,22,22,-9,-10,-12,-16,]),'+':([10,11,12,13,15,16,23,26,27,28,29,30,31,],[-15,19,-8,-11,-13,-14,19,-6,-7,-9,-10,-12,-16,]),'-':([10,11,12,13,15,16,23,26,27,28,29,30,31,],[-15,20,-8,-11,-13,-14,20,-6,-7,-9,-10,-12,-16,]),')':([10,12,13,15,16,17,23,26,27,28,29,30,31,],[-15,-8,-11,-13,-14,24,30,-6,-7,-9,-10,-12,-16,]),'[':([10,],[18,]),']':([25,],[31,]),}
+_lr_action_items = {'id':([0,6,7,8,14,21,22,23,24,34,],[4,4,10,19,10,10,10,10,10,19,]),'escrever':([0,6,],[5,5,]),'$end':([1,6,],[0,-1,]),';':([2,3,9,10,11,12,13,15,16,26,29,30,31,32,33,35,],[6,-2,-3,-18,-4,-11,-14,-16,-17,-8,-9,-10,-12,-13,-15,-19,]),'=':([4,],[7,]),'(':([5,7,14,21,22,23,24,],[8,14,14,14,14,14,14,]),'numInt':([7,14,20,21,22,23,24,],[15,15,28,15,15,15,15,]),'numF':([7,14,21,22,23,24,],[16,16,16,16,16,16,]),'texto':([8,34,],[18,18,]),'/':([10,12,13,15,16,29,30,31,32,33,35,],[-18,23,-14,-16,-17,23,23,-12,-13,-15,-19,]),'*':([10,12,13,15,16,29,30,31,32,33,35,],[-18,24,-14,-16,-17,24,24,-12,-13,-15,-19,]),'+':([10,11,12,13,15,16,25,29,30,31,32,33,35,],[-18,21,-11,-14,-16,-17,21,-9,-10,-12,-13,-15,-19,]),'-':([10,11,12,13,15,16,25,29,30,31,32,33,35,],[-18,22,-11,-14,-16,-17,22,-9,-10,-12,-13,-15,-19,]),')':([10,12,13,15,16,17,18,19,25,29,30,31,32,33,35,36,],[-18,-11,-14,-16,-17,26,-5,-6,33,-9,-10,-12,-13,-15,-19,-7,]),'[':([10,],[20,]),'<':([17,18,19,36,],[27,-5,-6,27,]),'>':([27,],[34,]),']':([28,],[35,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'Z':([0,],[1,]),'LstV':([0,],[2,]),'V':([0,6,],[3,9,]),'E':([7,14,],[11,23,]),'T':([7,14,19,20,],[12,12,26,27,]),'F':([7,14,19,20,21,22,],[13,13,13,13,28,29,]),}
+_lr_goto_items = {'Z':([0,],[1,]),'LstV':([0,],[2,]),'V':([0,6,],[3,9,]),'E':([7,14,],[11,25,]),'T':([7,14,21,22,],[12,12,29,30,]),'F':([7,14,21,22,23,24,],[13,13,13,13,31,32,]),'Texto':([8,34,],[17,36,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -31,16 +31,19 @@ _lr_productions = [
   ('LstV -> V','LstV',1,'p_lstv_head','arith_grammar.py',51),
   ('LstV -> LstV ; V','LstV',3,'p_lstv_tail','arith_grammar.py',55),
   ('V -> id = E','V',3,'p_atrib','arith_grammar.py',62),
-  ('V -> escrever ( id )','V',4,'p_esc','arith_grammar.py',67),
-  ('E -> E + T','E',3,'p_expr_soma','arith_grammar.py',73),
-  ('E -> E - T','E',3,'p_expr_sub','arith_grammar.py',78),
-  ('E -> T','E',1,'p_expr1','arith_grammar.py',84),
-  ('T -> T / F','T',3,'p_expr_div','arith_grammar.py',88),
-  ('T -> T * F','T',3,'p_expr_mult','arith_grammar.py',93),
-  ('T -> F','T',1,'p_expr2','arith_grammar.py',98),
-  ('F -> ( E )','F',3,'p_expr3','arith_grammar.py',102),
-  ('F -> numInt','F',1,'p_expr4','arith_grammar.py',108),
-  ('F -> numF','F',1,'p_expr5','arith_grammar.py',112),
-  ('F -> id','F',1,'p_expr6','arith_grammar.py',116),
-  ('F -> id [ numInt ]','F',4,'p_expr7','arith_grammar.py',120),
+  ('Texto -> texto','Texto',1,'p_text_1','arith_grammar.py',69),
+  ('Texto -> id','Texto',1,'p_text_2','arith_grammar.py',73),
+  ('Texto -> Texto < > Texto','Texto',4,'p_text_concat','arith_grammar.py',77),
+  ('V -> escrever ( Texto )','V',4,'p_esc','arith_grammar.py',81),
+  ('E -> E + T','E',3,'p_expr_soma','arith_grammar.py',88),
+  ('E -> E - T','E',3,'p_expr_sub','arith_grammar.py',93),
+  ('E -> T','E',1,'p_expr1','arith_grammar.py',99),
+  ('T -> T / F','T',3,'p_expr_div','arith_grammar.py',103),
+  ('T -> T * F','T',3,'p_expr_mult','arith_grammar.py',108),
+  ('T -> F','T',1,'p_expr2','arith_grammar.py',113),
+  ('F -> ( E )','F',3,'p_expr3','arith_grammar.py',117),
+  ('F -> numInt','F',1,'p_expr4','arith_grammar.py',123),
+  ('F -> numF','F',1,'p_expr5','arith_grammar.py',127),
+  ('F -> id','F',1,'p_expr6','arith_grammar.py',131),
+  ('F -> id [ numInt ]','F',4,'p_expr7','arith_grammar.py',135),
 ]

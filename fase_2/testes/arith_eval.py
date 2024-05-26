@@ -11,7 +11,7 @@ class ArithEval:
   		"/": lambda args: args[0] / args[1],
 		"seq": lambda args: args[-1],
 		"atr": lambda args: ArithEval._attrib(args),
-		"esc": lambda args: print(args[0]),
+		"esc": lambda args: print(''.join(map(str, args))),
 	}
 
 	@staticmethod
@@ -38,11 +38,6 @@ class ArithEval:
 			args = [ArithEval.evaluate(a) for a in ast['args']]
 			if op in ArithEval.operators:
 				func = ArithEval.operators[op]
-				if(op in "+-/*" ):
-					i = 0
-					for i,arg in enumerate(args):
-						if(arg in ArithEval.symbols):
-							args[i] = ArithEval.symbols[arg]
 				return func(args)
 			else:
 				raise Exception(f"Unknown operator {op}")

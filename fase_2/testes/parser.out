@@ -10,7 +10,6 @@ Unused terminals:
     fold
     funcao
     map
-    texto
 
 Grammar
 
@@ -19,52 +18,58 @@ Rule 1     Z -> LstV ;
 Rule 2     LstV -> V
 Rule 3     LstV -> LstV ; V
 Rule 4     V -> id = E
-Rule 5     V -> escrever ( id )
-Rule 6     E -> E + T
-Rule 7     E -> E - T
-Rule 8     E -> T
-Rule 9     T -> T / F
-Rule 10    T -> T * F
-Rule 11    T -> F
-Rule 12    F -> ( E )
-Rule 13    F -> numInt
-Rule 14    F -> numF
-Rule 15    F -> id
-Rule 16    F -> id [ numInt ]
+Rule 5     Texto -> texto
+Rule 6     Texto -> id
+Rule 7     Texto -> Texto < > Texto
+Rule 8     V -> escrever ( Texto )
+Rule 9     E -> E + T
+Rule 10    E -> E - T
+Rule 11    E -> T
+Rule 12    T -> T / F
+Rule 13    T -> T * F
+Rule 14    T -> F
+Rule 15    F -> ( E )
+Rule 16    F -> numInt
+Rule 17    F -> numF
+Rule 18    F -> id
+Rule 19    F -> id [ numInt ]
 
 Terminals, with rules where they appear
 
-(                    : 5 12
-)                    : 5 12
-*                    : 10
-+                    : 6
--                    : 7
-/                    : 9
+(                    : 8 15
+)                    : 8 15
+*                    : 13
++                    : 9
+-                    : 10
+/                    : 12
 ;                    : 1 3
+<                    : 7
 =                    : 4
-[                    : 16
-]                    : 16
+>                    : 7
+[                    : 19
+]                    : 19
 aleatorio            : 
 comentarioMult       : 
 comentarioOne        : 
 entrada              : 
 error                : 
-escrever             : 5
+escrever             : 8
 fim                  : 
 fold                 : 
 funcao               : 
-id                   : 4 5 15 16
+id                   : 4 6 18 19
 map                  : 
-numF                 : 14
-numInt               : 13 16
-texto                : 
+numF                 : 17
+numInt               : 16 19
+texto                : 5
 
 Nonterminals, with rules where they appear
 
-E                    : 4 6 7 12
-F                    : 9 10 11
+E                    : 4 9 10 15
+F                    : 12 13 14
 LstV                 : 1 3
-T                    : 6 7 8 9 10
+T                    : 9 10 11 12 13
+Texto                : 7 7 8
 V                    : 2 3
 Z                    : 0
 
@@ -77,7 +82,7 @@ state 0
     (2) LstV -> . V
     (3) LstV -> . LstV ; V
     (4) V -> . id = E
-    (5) V -> . escrever ( id )
+    (8) V -> . escrever ( Texto )
 
     id              shift and go to state 4
     escrever        shift and go to state 5
@@ -116,7 +121,7 @@ state 4
 
 state 5
 
-    (5) V -> escrever . ( id )
+    (8) V -> escrever . ( Texto )
 
     (               shift and go to state 8
 
@@ -126,7 +131,7 @@ state 6
     (1) Z -> LstV ; .
     (3) LstV -> LstV ; . V
     (4) V -> . id = E
-    (5) V -> . escrever ( id )
+    (8) V -> . escrever ( Texto )
 
     $end            reduce using rule 1 (Z -> LstV ; .)
     id              shift and go to state 4
@@ -137,17 +142,17 @@ state 6
 state 7
 
     (4) V -> id = . E
-    (6) E -> . E + T
-    (7) E -> . E - T
-    (8) E -> . T
-    (9) T -> . T / F
-    (10) T -> . T * F
-    (11) T -> . F
-    (12) F -> . ( E )
-    (13) F -> . numInt
-    (14) F -> . numF
-    (15) F -> . id
-    (16) F -> . id [ numInt ]
+    (9) E -> . E + T
+    (10) E -> . E - T
+    (11) E -> . T
+    (12) T -> . T / F
+    (13) T -> . T * F
+    (14) T -> . F
+    (15) F -> . ( E )
+    (16) F -> . numInt
+    (17) F -> . numF
+    (18) F -> . id
+    (19) F -> . id [ numInt ]
 
     (               shift and go to state 14
     numInt          shift and go to state 15
@@ -160,10 +165,15 @@ state 7
 
 state 8
 
-    (5) V -> escrever ( . id )
+    (8) V -> escrever ( . Texto )
+    (5) Texto -> . texto
+    (6) Texto -> . id
+    (7) Texto -> . Texto < > Texto
 
-    id              shift and go to state 17
+    texto           shift and go to state 18
+    id              shift and go to state 19
 
+    Texto                          shift and go to state 17
 
 state 9
 
@@ -174,286 +184,339 @@ state 9
 
 state 10
 
-    (15) F -> id .
-    (16) F -> id . [ numInt ]
+    (18) F -> id .
+    (19) F -> id . [ numInt ]
 
-    /               reduce using rule 15 (F -> id .)
-    *               reduce using rule 15 (F -> id .)
-    +               reduce using rule 15 (F -> id .)
-    -               reduce using rule 15 (F -> id .)
-    ;               reduce using rule 15 (F -> id .)
-    )               reduce using rule 15 (F -> id .)
-    [               shift and go to state 18
+    /               reduce using rule 18 (F -> id .)
+    *               reduce using rule 18 (F -> id .)
+    +               reduce using rule 18 (F -> id .)
+    -               reduce using rule 18 (F -> id .)
+    ;               reduce using rule 18 (F -> id .)
+    )               reduce using rule 18 (F -> id .)
+    [               shift and go to state 20
 
 
 state 11
 
     (4) V -> id = E .
-    (6) E -> E . + T
-    (7) E -> E . - T
+    (9) E -> E . + T
+    (10) E -> E . - T
 
     ;               reduce using rule 4 (V -> id = E .)
-    +               shift and go to state 19
-    -               shift and go to state 20
+    +               shift and go to state 21
+    -               shift and go to state 22
 
 
 state 12
 
-    (8) E -> T .
-    (9) T -> T . / F
-    (10) T -> T . * F
+    (11) E -> T .
+    (12) T -> T . / F
+    (13) T -> T . * F
 
-    +               reduce using rule 8 (E -> T .)
-    -               reduce using rule 8 (E -> T .)
-    ;               reduce using rule 8 (E -> T .)
-    )               reduce using rule 8 (E -> T .)
-    /               shift and go to state 21
-    *               shift and go to state 22
+    +               reduce using rule 11 (E -> T .)
+    -               reduce using rule 11 (E -> T .)
+    ;               reduce using rule 11 (E -> T .)
+    )               reduce using rule 11 (E -> T .)
+    /               shift and go to state 23
+    *               shift and go to state 24
 
 
 state 13
 
-    (11) T -> F .
+    (14) T -> F .
 
-    /               reduce using rule 11 (T -> F .)
-    *               reduce using rule 11 (T -> F .)
-    +               reduce using rule 11 (T -> F .)
-    -               reduce using rule 11 (T -> F .)
-    ;               reduce using rule 11 (T -> F .)
-    )               reduce using rule 11 (T -> F .)
+    /               reduce using rule 14 (T -> F .)
+    *               reduce using rule 14 (T -> F .)
+    +               reduce using rule 14 (T -> F .)
+    -               reduce using rule 14 (T -> F .)
+    ;               reduce using rule 14 (T -> F .)
+    )               reduce using rule 14 (T -> F .)
 
 
 state 14
 
-    (12) F -> ( . E )
-    (6) E -> . E + T
-    (7) E -> . E - T
-    (8) E -> . T
-    (9) T -> . T / F
-    (10) T -> . T * F
-    (11) T -> . F
-    (12) F -> . ( E )
-    (13) F -> . numInt
-    (14) F -> . numF
-    (15) F -> . id
-    (16) F -> . id [ numInt ]
+    (15) F -> ( . E )
+    (9) E -> . E + T
+    (10) E -> . E - T
+    (11) E -> . T
+    (12) T -> . T / F
+    (13) T -> . T * F
+    (14) T -> . F
+    (15) F -> . ( E )
+    (16) F -> . numInt
+    (17) F -> . numF
+    (18) F -> . id
+    (19) F -> . id [ numInt ]
 
     (               shift and go to state 14
     numInt          shift and go to state 15
     numF            shift and go to state 16
     id              shift and go to state 10
 
-    E                              shift and go to state 23
+    E                              shift and go to state 25
     T                              shift and go to state 12
     F                              shift and go to state 13
 
 state 15
 
-    (13) F -> numInt .
+    (16) F -> numInt .
 
-    /               reduce using rule 13 (F -> numInt .)
-    *               reduce using rule 13 (F -> numInt .)
-    +               reduce using rule 13 (F -> numInt .)
-    -               reduce using rule 13 (F -> numInt .)
-    ;               reduce using rule 13 (F -> numInt .)
-    )               reduce using rule 13 (F -> numInt .)
+    /               reduce using rule 16 (F -> numInt .)
+    *               reduce using rule 16 (F -> numInt .)
+    +               reduce using rule 16 (F -> numInt .)
+    -               reduce using rule 16 (F -> numInt .)
+    ;               reduce using rule 16 (F -> numInt .)
+    )               reduce using rule 16 (F -> numInt .)
 
 
 state 16
 
-    (14) F -> numF .
+    (17) F -> numF .
 
-    /               reduce using rule 14 (F -> numF .)
-    *               reduce using rule 14 (F -> numF .)
-    +               reduce using rule 14 (F -> numF .)
-    -               reduce using rule 14 (F -> numF .)
-    ;               reduce using rule 14 (F -> numF .)
-    )               reduce using rule 14 (F -> numF .)
+    /               reduce using rule 17 (F -> numF .)
+    *               reduce using rule 17 (F -> numF .)
+    +               reduce using rule 17 (F -> numF .)
+    -               reduce using rule 17 (F -> numF .)
+    ;               reduce using rule 17 (F -> numF .)
+    )               reduce using rule 17 (F -> numF .)
 
 
 state 17
 
-    (5) V -> escrever ( id . )
+    (8) V -> escrever ( Texto . )
+    (7) Texto -> Texto . < > Texto
 
-    )               shift and go to state 24
+    )               shift and go to state 26
+    <               shift and go to state 27
 
 
 state 18
 
-    (16) F -> id [ . numInt ]
+    (5) Texto -> texto .
 
-    numInt          shift and go to state 25
+    )               reduce using rule 5 (Texto -> texto .)
+    <               reduce using rule 5 (Texto -> texto .)
 
 
 state 19
 
-    (6) E -> E + . T
-    (9) T -> . T / F
-    (10) T -> . T * F
-    (11) T -> . F
-    (12) F -> . ( E )
-    (13) F -> . numInt
-    (14) F -> . numF
-    (15) F -> . id
-    (16) F -> . id [ numInt ]
+    (6) Texto -> id .
 
-    (               shift and go to state 14
-    numInt          shift and go to state 15
-    numF            shift and go to state 16
-    id              shift and go to state 10
+    )               reduce using rule 6 (Texto -> id .)
+    <               reduce using rule 6 (Texto -> id .)
 
-    T                              shift and go to state 26
-    F                              shift and go to state 13
 
 state 20
 
-    (7) E -> E - . T
-    (9) T -> . T / F
-    (10) T -> . T * F
-    (11) T -> . F
-    (12) F -> . ( E )
-    (13) F -> . numInt
-    (14) F -> . numF
-    (15) F -> . id
-    (16) F -> . id [ numInt ]
+    (19) F -> id [ . numInt ]
 
-    (               shift and go to state 14
-    numInt          shift and go to state 15
-    numF            shift and go to state 16
-    id              shift and go to state 10
+    numInt          shift and go to state 28
 
-    T                              shift and go to state 27
-    F                              shift and go to state 13
 
 state 21
 
-    (9) T -> T / . F
-    (12) F -> . ( E )
-    (13) F -> . numInt
-    (14) F -> . numF
-    (15) F -> . id
-    (16) F -> . id [ numInt ]
+    (9) E -> E + . T
+    (12) T -> . T / F
+    (13) T -> . T * F
+    (14) T -> . F
+    (15) F -> . ( E )
+    (16) F -> . numInt
+    (17) F -> . numF
+    (18) F -> . id
+    (19) F -> . id [ numInt ]
 
     (               shift and go to state 14
     numInt          shift and go to state 15
     numF            shift and go to state 16
     id              shift and go to state 10
 
-    F                              shift and go to state 28
+    T                              shift and go to state 29
+    F                              shift and go to state 13
 
 state 22
 
-    (10) T -> T * . F
-    (12) F -> . ( E )
-    (13) F -> . numInt
-    (14) F -> . numF
-    (15) F -> . id
-    (16) F -> . id [ numInt ]
+    (10) E -> E - . T
+    (12) T -> . T / F
+    (13) T -> . T * F
+    (14) T -> . F
+    (15) F -> . ( E )
+    (16) F -> . numInt
+    (17) F -> . numF
+    (18) F -> . id
+    (19) F -> . id [ numInt ]
 
     (               shift and go to state 14
     numInt          shift and go to state 15
     numF            shift and go to state 16
     id              shift and go to state 10
 
-    F                              shift and go to state 29
+    T                              shift and go to state 30
+    F                              shift and go to state 13
 
 state 23
 
-    (12) F -> ( E . )
-    (6) E -> E . + T
-    (7) E -> E . - T
+    (12) T -> T / . F
+    (15) F -> . ( E )
+    (16) F -> . numInt
+    (17) F -> . numF
+    (18) F -> . id
+    (19) F -> . id [ numInt ]
 
-    )               shift and go to state 30
-    +               shift and go to state 19
-    -               shift and go to state 20
+    (               shift and go to state 14
+    numInt          shift and go to state 15
+    numF            shift and go to state 16
+    id              shift and go to state 10
 
+    F                              shift and go to state 31
 
 state 24
 
-    (5) V -> escrever ( id ) .
+    (13) T -> T * . F
+    (15) F -> . ( E )
+    (16) F -> . numInt
+    (17) F -> . numF
+    (18) F -> . id
+    (19) F -> . id [ numInt ]
 
-    ;               reduce using rule 5 (V -> escrever ( id ) .)
+    (               shift and go to state 14
+    numInt          shift and go to state 15
+    numF            shift and go to state 16
+    id              shift and go to state 10
 
+    F                              shift and go to state 32
 
 state 25
 
-    (16) F -> id [ numInt . ]
+    (15) F -> ( E . )
+    (9) E -> E . + T
+    (10) E -> E . - T
 
-    ]               shift and go to state 31
+    )               shift and go to state 33
+    +               shift and go to state 21
+    -               shift and go to state 22
 
 
 state 26
 
-    (6) E -> E + T .
-    (9) T -> T . / F
-    (10) T -> T . * F
+    (8) V -> escrever ( Texto ) .
 
-    +               reduce using rule 6 (E -> E + T .)
-    -               reduce using rule 6 (E -> E + T .)
-    ;               reduce using rule 6 (E -> E + T .)
-    )               reduce using rule 6 (E -> E + T .)
-    /               shift and go to state 21
-    *               shift and go to state 22
+    ;               reduce using rule 8 (V -> escrever ( Texto ) .)
 
 
 state 27
 
-    (7) E -> E - T .
-    (9) T -> T . / F
-    (10) T -> T . * F
+    (7) Texto -> Texto < . > Texto
 
-    +               reduce using rule 7 (E -> E - T .)
-    -               reduce using rule 7 (E -> E - T .)
-    ;               reduce using rule 7 (E -> E - T .)
-    )               reduce using rule 7 (E -> E - T .)
-    /               shift and go to state 21
-    *               shift and go to state 22
+    >               shift and go to state 34
 
 
 state 28
 
-    (9) T -> T / F .
+    (19) F -> id [ numInt . ]
 
-    /               reduce using rule 9 (T -> T / F .)
-    *               reduce using rule 9 (T -> T / F .)
-    +               reduce using rule 9 (T -> T / F .)
-    -               reduce using rule 9 (T -> T / F .)
-    ;               reduce using rule 9 (T -> T / F .)
-    )               reduce using rule 9 (T -> T / F .)
+    ]               shift and go to state 35
 
 
 state 29
 
-    (10) T -> T * F .
+    (9) E -> E + T .
+    (12) T -> T . / F
+    (13) T -> T . * F
 
-    /               reduce using rule 10 (T -> T * F .)
-    *               reduce using rule 10 (T -> T * F .)
-    +               reduce using rule 10 (T -> T * F .)
-    -               reduce using rule 10 (T -> T * F .)
-    ;               reduce using rule 10 (T -> T * F .)
-    )               reduce using rule 10 (T -> T * F .)
+    +               reduce using rule 9 (E -> E + T .)
+    -               reduce using rule 9 (E -> E + T .)
+    ;               reduce using rule 9 (E -> E + T .)
+    )               reduce using rule 9 (E -> E + T .)
+    /               shift and go to state 23
+    *               shift and go to state 24
 
 
 state 30
 
-    (12) F -> ( E ) .
+    (10) E -> E - T .
+    (12) T -> T . / F
+    (13) T -> T . * F
 
-    /               reduce using rule 12 (F -> ( E ) .)
-    *               reduce using rule 12 (F -> ( E ) .)
-    +               reduce using rule 12 (F -> ( E ) .)
-    -               reduce using rule 12 (F -> ( E ) .)
-    ;               reduce using rule 12 (F -> ( E ) .)
-    )               reduce using rule 12 (F -> ( E ) .)
+    +               reduce using rule 10 (E -> E - T .)
+    -               reduce using rule 10 (E -> E - T .)
+    ;               reduce using rule 10 (E -> E - T .)
+    )               reduce using rule 10 (E -> E - T .)
+    /               shift and go to state 23
+    *               shift and go to state 24
 
 
 state 31
 
-    (16) F -> id [ numInt ] .
+    (12) T -> T / F .
 
-    /               reduce using rule 16 (F -> id [ numInt ] .)
-    *               reduce using rule 16 (F -> id [ numInt ] .)
-    +               reduce using rule 16 (F -> id [ numInt ] .)
-    -               reduce using rule 16 (F -> id [ numInt ] .)
-    ;               reduce using rule 16 (F -> id [ numInt ] .)
-    )               reduce using rule 16 (F -> id [ numInt ] .)
+    /               reduce using rule 12 (T -> T / F .)
+    *               reduce using rule 12 (T -> T / F .)
+    +               reduce using rule 12 (T -> T / F .)
+    -               reduce using rule 12 (T -> T / F .)
+    ;               reduce using rule 12 (T -> T / F .)
+    )               reduce using rule 12 (T -> T / F .)
 
+
+state 32
+
+    (13) T -> T * F .
+
+    /               reduce using rule 13 (T -> T * F .)
+    *               reduce using rule 13 (T -> T * F .)
+    +               reduce using rule 13 (T -> T * F .)
+    -               reduce using rule 13 (T -> T * F .)
+    ;               reduce using rule 13 (T -> T * F .)
+    )               reduce using rule 13 (T -> T * F .)
+
+
+state 33
+
+    (15) F -> ( E ) .
+
+    /               reduce using rule 15 (F -> ( E ) .)
+    *               reduce using rule 15 (F -> ( E ) .)
+    +               reduce using rule 15 (F -> ( E ) .)
+    -               reduce using rule 15 (F -> ( E ) .)
+    ;               reduce using rule 15 (F -> ( E ) .)
+    )               reduce using rule 15 (F -> ( E ) .)
+
+
+state 34
+
+    (7) Texto -> Texto < > . Texto
+    (5) Texto -> . texto
+    (6) Texto -> . id
+    (7) Texto -> . Texto < > Texto
+
+    texto           shift and go to state 18
+    id              shift and go to state 19
+
+    Texto                          shift and go to state 36
+
+state 35
+
+    (19) F -> id [ numInt ] .
+
+    /               reduce using rule 19 (F -> id [ numInt ] .)
+    *               reduce using rule 19 (F -> id [ numInt ] .)
+    +               reduce using rule 19 (F -> id [ numInt ] .)
+    -               reduce using rule 19 (F -> id [ numInt ] .)
+    ;               reduce using rule 19 (F -> id [ numInt ] .)
+    )               reduce using rule 19 (F -> id [ numInt ] .)
+
+
+state 36
+
+    (7) Texto -> Texto < > Texto .
+    (7) Texto -> Texto . < > Texto
+
+  ! shift/reduce conflict for < resolved as shift
+    )               reduce using rule 7 (Texto -> Texto < > Texto .)
+    <               shift and go to state 27
+
+  ! <               [ reduce using rule 7 (Texto -> Texto < > Texto .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for < in state 36 resolved as shift

@@ -63,11 +63,38 @@ class ArithGrammar:
         p[0] = { 'op': 'atr',
 				 'args': [ p[1], p[3] ] }
 
-    def p_esc(self, p):
-        """ V : escrever "(" id ")"  """
-        p[0] = { 'op': 'esc', 
-				 'args': [ { 'var': p[3] } ] }
+    #escrita na tela
 
+    def p_text_1(self, p):
+        """ Texto :  texto  """
+        p[0] = p[1]
+        
+    def p_text_2(self, p):
+        """ Texto : id  """
+        p[0] = { 'var': p[1] }
+
+    def p_text_concat(self, p):
+            """ Texto : Texto "<" ">" Texto  """
+            p[0] = list()
+            if isinstance(p[1], list):
+                p[0].extend(p[1])
+            else:
+                p[0].append(p[1])
+        
+            if isinstance(p[4], list):
+                p[0].extend(p[4])
+            else:
+                p[0].append(p[4])
+
+    def p_esc(self, p):
+            """ V : escrever "(" Texto ")"  """
+            if not isinstance(p[3], list):
+                p[3] = [p[3]]
+            p[0] = {'op': 'esc',
+                    'args': p[3]}
+
+    #aritmetrica    
+        
     def p_expr_soma(self, p):
         """ E : E '+' T """
         p[0] = { 'op': p[2] ,
@@ -113,13 +140,14 @@ class ArithGrammar:
         
     def p_expr6(self, p):
         """  F : id  """
-        p[0] = p[1]
+        p[0] = {'var':p[1]}
 
     def p_expr7(self, p):
         """  F : id "[" numInt "]" """
         p[0] = p[1][p[3]]
 
-# aula 22 ver 
+    #def p_rand(self,p):
+        
 
     def p_error(self, p):
         if p:

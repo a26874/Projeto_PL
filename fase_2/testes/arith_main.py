@@ -9,8 +9,10 @@ lg.build()
 #               c = 2 + 3;
 #               ESCREVER("Ola" <> " " <> b <> c);""");
 
-res = lg.parse("""a = [1,2];
-               ESCREVER(a[0]);
+res = lg.parse("""a = ENTRADA();
+               b = 2;
+               c = a + b;
+               ESCREVER(c);
                """
 )
 

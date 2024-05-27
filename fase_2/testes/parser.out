@@ -4,7 +4,6 @@ Unused terminals:
 
     comentarioMult
     comentarioOne
-    entrada
     fim
     funcao
 
@@ -26,57 +25,58 @@ Rule 12    Texto -> id
 Rule 13    Texto -> id [ numInt ]
 Rule 14    Texto -> Texto < > Texto
 Rule 15    V -> escrever ( Texto )
-Rule 16    E -> E + T
-Rule 17    E -> E - T
-Rule 18    E -> T
-Rule 19    T -> T / F
-Rule 20    T -> T * F
-Rule 21    T -> F
-Rule 22    F -> ( E )
-Rule 23    F -> numInt
-Rule 24    F -> numF
-Rule 25    F -> id
-Rule 26    F -> id [ numInt ]
-Rule 27    F -> aleatorio ( numInt )
+Rule 16    V -> id = entrada ( )
+Rule 17    E -> E + T
+Rule 18    E -> E - T
+Rule 19    E -> T
+Rule 20    T -> T / F
+Rule 21    T -> T * F
+Rule 22    T -> F
+Rule 23    F -> ( E )
+Rule 24    F -> numInt
+Rule 25    F -> numF
+Rule 26    F -> id
+Rule 27    F -> id [ numInt ]
+Rule 28    F -> aleatorio ( numInt )
 
 Terminals, with rules where they appear
 
-(                    : 4 5 15 22 27
-)                    : 4 5 15 22 27
-*                    : 20
-+                    : 16
+(                    : 4 5 15 16 23 28
+)                    : 4 5 15 16 23 28
+*                    : 21
++                    : 17
 ,                    : 4 5 5 9
--                    : 17
-/                    : 19
+-                    : 18
+/                    : 20
 ;                    : 1 3
 <                    : 14
-=                    : 4 5 6 7
+=                    : 4 5 6 7 16
 >                    : 14
-[                    : 8 13 26
-]                    : 8 13 26
-aleatorio            : 27
+[                    : 8 13 27
+]                    : 8 13 27
+aleatorio            : 28
 comentarioMult       : 
 comentarioOne        : 
-entrada              : 
+entrada              : 16
 error                : 
 escrever             : 15
 fim                  : 
 fold                 : 5
 funcao               : 
-id                   : 4 4 5 5 6 7 12 13 25 26
+id                   : 4 4 5 5 6 7 12 13 16 26 27
 map                  : 4
-numF                 : 24
-numInt               : 5 9 10 13 23 26 27
+numF                 : 25
+numInt               : 5 9 10 13 24 27 28
 texto                : 11
 
 Nonterminals, with rules where they appear
 
-E                    : 6 16 17 22
-F                    : 19 20 21
+E                    : 6 17 18 23
+F                    : 20 21 22
 ListIn               : 8 9
 Lista                : 4 5 7
 LstV                 : 1 3
-T                    : 16 17 18 19 20
+T                    : 17 18 19 20 21
 Texto                : 14 14 15
 V                    : 2 3
 Z                    : 0
@@ -94,6 +94,7 @@ state 0
     (6) V -> . id = E
     (7) V -> . id = Lista
     (15) V -> . escrever ( Texto )
+    (16) V -> . id = entrada ( )
 
     id              shift and go to state 4
     escrever        shift and go to state 5
@@ -129,6 +130,7 @@ state 4
     (5) V -> id . = fold ( id , Lista , numInt )
     (6) V -> id . = E
     (7) V -> id . = Lista
+    (16) V -> id . = entrada ( )
 
     =               shift and go to state 7
 
@@ -149,6 +151,7 @@ state 6
     (6) V -> . id = E
     (7) V -> . id = Lista
     (15) V -> . escrever ( Texto )
+    (16) V -> . id = entrada ( )
 
     $end            reduce using rule 1 (Z -> LstV ; .)
     id              shift and go to state 4
@@ -162,33 +165,35 @@ state 7
     (5) V -> id = . fold ( id , Lista , numInt )
     (6) V -> id = . E
     (7) V -> id = . Lista
-    (16) E -> . E + T
-    (17) E -> . E - T
-    (18) E -> . T
+    (16) V -> id = . entrada ( )
+    (17) E -> . E + T
+    (18) E -> . E - T
+    (19) E -> . T
     (8) Lista -> . [ ListIn ]
-    (19) T -> . T / F
-    (20) T -> . T * F
-    (21) T -> . F
-    (22) F -> . ( E )
-    (23) F -> . numInt
-    (24) F -> . numF
-    (25) F -> . id
-    (26) F -> . id [ numInt ]
-    (27) F -> . aleatorio ( numInt )
+    (20) T -> . T / F
+    (21) T -> . T * F
+    (22) T -> . F
+    (23) F -> . ( E )
+    (24) F -> . numInt
+    (25) F -> . numF
+    (26) F -> . id
+    (27) F -> . id [ numInt ]
+    (28) F -> . aleatorio ( numInt )
 
     map             shift and go to state 11
     fold            shift and go to state 14
-    [               shift and go to state 18
+    entrada         shift and go to state 17
+    [               shift and go to state 19
     (               shift and go to state 12
     numInt          shift and go to state 15
-    numF            shift and go to state 20
+    numF            shift and go to state 21
     id              shift and go to state 10
-    aleatorio       shift and go to state 21
+    aleatorio       shift and go to state 22
 
     Lista                          shift and go to state 13
     E                              shift and go to state 16
-    T                              shift and go to state 17
-    F                              shift and go to state 19
+    T                              shift and go to state 18
+    F                              shift and go to state 20
 
 state 8
 
@@ -198,10 +203,10 @@ state 8
     (13) Texto -> . id [ numInt ]
     (14) Texto -> . Texto < > Texto
 
-    texto           shift and go to state 23
-    id              shift and go to state 24
+    texto           shift and go to state 24
+    id              shift and go to state 25
 
-    Texto                          shift and go to state 22
+    Texto                          shift and go to state 23
 
 state 9
 
@@ -212,50 +217,50 @@ state 9
 
 state 10
 
-    (25) F -> id .
-    (26) F -> id . [ numInt ]
+    (26) F -> id .
+    (27) F -> id . [ numInt ]
 
-    /               reduce using rule 25 (F -> id .)
-    *               reduce using rule 25 (F -> id .)
-    +               reduce using rule 25 (F -> id .)
-    -               reduce using rule 25 (F -> id .)
-    ;               reduce using rule 25 (F -> id .)
-    )               reduce using rule 25 (F -> id .)
-    [               shift and go to state 25
+    /               reduce using rule 26 (F -> id .)
+    *               reduce using rule 26 (F -> id .)
+    +               reduce using rule 26 (F -> id .)
+    -               reduce using rule 26 (F -> id .)
+    ;               reduce using rule 26 (F -> id .)
+    )               reduce using rule 26 (F -> id .)
+    [               shift and go to state 26
 
 
 state 11
 
     (4) V -> id = map . ( id , Lista )
 
-    (               shift and go to state 26
+    (               shift and go to state 27
 
 
 state 12
 
-    (22) F -> ( . E )
-    (16) E -> . E + T
-    (17) E -> . E - T
-    (18) E -> . T
-    (19) T -> . T / F
-    (20) T -> . T * F
-    (21) T -> . F
-    (22) F -> . ( E )
-    (23) F -> . numInt
-    (24) F -> . numF
-    (25) F -> . id
-    (26) F -> . id [ numInt ]
-    (27) F -> . aleatorio ( numInt )
+    (23) F -> ( . E )
+    (17) E -> . E + T
+    (18) E -> . E - T
+    (19) E -> . T
+    (20) T -> . T / F
+    (21) T -> . T * F
+    (22) T -> . F
+    (23) F -> . ( E )
+    (24) F -> . numInt
+    (25) F -> . numF
+    (26) F -> . id
+    (27) F -> . id [ numInt ]
+    (28) F -> . aleatorio ( numInt )
 
     (               shift and go to state 12
     numInt          shift and go to state 15
-    numF            shift and go to state 20
+    numF            shift and go to state 21
     id              shift and go to state 10
-    aleatorio       shift and go to state 21
+    aleatorio       shift and go to state 22
 
-    E                              shift and go to state 27
-    T                              shift and go to state 17
-    F                              shift and go to state 19
+    E                              shift and go to state 28
+    T                              shift and go to state 18
+    F                              shift and go to state 20
 
 state 13
 
@@ -268,97 +273,104 @@ state 14
 
     (5) V -> id = fold . ( id , Lista , numInt )
 
-    (               shift and go to state 28
+    (               shift and go to state 29
 
 
 state 15
 
-    (23) F -> numInt .
+    (24) F -> numInt .
 
-    /               reduce using rule 23 (F -> numInt .)
-    *               reduce using rule 23 (F -> numInt .)
-    +               reduce using rule 23 (F -> numInt .)
-    -               reduce using rule 23 (F -> numInt .)
-    ;               reduce using rule 23 (F -> numInt .)
-    )               reduce using rule 23 (F -> numInt .)
+    /               reduce using rule 24 (F -> numInt .)
+    *               reduce using rule 24 (F -> numInt .)
+    +               reduce using rule 24 (F -> numInt .)
+    -               reduce using rule 24 (F -> numInt .)
+    ;               reduce using rule 24 (F -> numInt .)
+    )               reduce using rule 24 (F -> numInt .)
 
 
 state 16
 
     (6) V -> id = E .
-    (16) E -> E . + T
-    (17) E -> E . - T
+    (17) E -> E . + T
+    (18) E -> E . - T
 
     ;               reduce using rule 6 (V -> id = E .)
-    +               shift and go to state 29
-    -               shift and go to state 30
+    +               shift and go to state 30
+    -               shift and go to state 31
 
 
 state 17
 
-    (18) E -> T .
-    (19) T -> T . / F
-    (20) T -> T . * F
+    (16) V -> id = entrada . ( )
 
-    +               reduce using rule 18 (E -> T .)
-    -               reduce using rule 18 (E -> T .)
-    ;               reduce using rule 18 (E -> T .)
-    )               reduce using rule 18 (E -> T .)
-    /               shift and go to state 31
-    *               shift and go to state 32
+    (               shift and go to state 32
 
 
 state 18
+
+    (19) E -> T .
+    (20) T -> T . / F
+    (21) T -> T . * F
+
+    +               reduce using rule 19 (E -> T .)
+    -               reduce using rule 19 (E -> T .)
+    ;               reduce using rule 19 (E -> T .)
+    )               reduce using rule 19 (E -> T .)
+    /               shift and go to state 33
+    *               shift and go to state 34
+
+
+state 19
 
     (8) Lista -> [ . ListIn ]
     (9) ListIn -> . numInt , ListIn
     (10) ListIn -> . numInt
 
-    numInt          shift and go to state 34
+    numInt          shift and go to state 36
 
-    ListIn                         shift and go to state 33
-
-state 19
-
-    (21) T -> F .
-
-    /               reduce using rule 21 (T -> F .)
-    *               reduce using rule 21 (T -> F .)
-    +               reduce using rule 21 (T -> F .)
-    -               reduce using rule 21 (T -> F .)
-    ;               reduce using rule 21 (T -> F .)
-    )               reduce using rule 21 (T -> F .)
-
+    ListIn                         shift and go to state 35
 
 state 20
 
-    (24) F -> numF .
+    (22) T -> F .
 
-    /               reduce using rule 24 (F -> numF .)
-    *               reduce using rule 24 (F -> numF .)
-    +               reduce using rule 24 (F -> numF .)
-    -               reduce using rule 24 (F -> numF .)
-    ;               reduce using rule 24 (F -> numF .)
-    )               reduce using rule 24 (F -> numF .)
+    /               reduce using rule 22 (T -> F .)
+    *               reduce using rule 22 (T -> F .)
+    +               reduce using rule 22 (T -> F .)
+    -               reduce using rule 22 (T -> F .)
+    ;               reduce using rule 22 (T -> F .)
+    )               reduce using rule 22 (T -> F .)
 
 
 state 21
 
-    (27) F -> aleatorio . ( numInt )
+    (25) F -> numF .
 
-    (               shift and go to state 35
+    /               reduce using rule 25 (F -> numF .)
+    *               reduce using rule 25 (F -> numF .)
+    +               reduce using rule 25 (F -> numF .)
+    -               reduce using rule 25 (F -> numF .)
+    ;               reduce using rule 25 (F -> numF .)
+    )               reduce using rule 25 (F -> numF .)
 
 
 state 22
 
-    (15) V -> escrever ( Texto . )
-    (14) Texto -> Texto . < > Texto
+    (28) F -> aleatorio . ( numInt )
 
-    )               shift and go to state 36
-    <               shift and go to state 37
+    (               shift and go to state 37
 
 
 state 23
+
+    (15) V -> escrever ( Texto . )
+    (14) Texto -> Texto . < > Texto
+
+    )               shift and go to state 38
+    <               shift and go to state 39
+
+
+state 24
 
     (11) Texto -> texto .
 
@@ -366,258 +378,272 @@ state 23
     <               reduce using rule 11 (Texto -> texto .)
 
 
-state 24
+state 25
 
     (12) Texto -> id .
     (13) Texto -> id . [ numInt ]
 
     )               reduce using rule 12 (Texto -> id .)
     <               reduce using rule 12 (Texto -> id .)
-    [               shift and go to state 38
-
-
-state 25
-
-    (26) F -> id [ . numInt ]
-
-    numInt          shift and go to state 39
+    [               shift and go to state 40
 
 
 state 26
 
-    (4) V -> id = map ( . id , Lista )
+    (27) F -> id [ . numInt ]
 
-    id              shift and go to state 40
+    numInt          shift and go to state 41
 
 
 state 27
 
-    (22) F -> ( E . )
-    (16) E -> E . + T
-    (17) E -> E . - T
-
-    )               shift and go to state 41
-    +               shift and go to state 29
-    -               shift and go to state 30
-
-
-state 28
-
-    (5) V -> id = fold ( . id , Lista , numInt )
+    (4) V -> id = map ( . id , Lista )
 
     id              shift and go to state 42
 
 
+state 28
+
+    (23) F -> ( E . )
+    (17) E -> E . + T
+    (18) E -> E . - T
+
+    )               shift and go to state 43
+    +               shift and go to state 30
+    -               shift and go to state 31
+
+
 state 29
 
-    (16) E -> E + . T
-    (19) T -> . T / F
-    (20) T -> . T * F
-    (21) T -> . F
-    (22) F -> . ( E )
-    (23) F -> . numInt
-    (24) F -> . numF
-    (25) F -> . id
-    (26) F -> . id [ numInt ]
-    (27) F -> . aleatorio ( numInt )
+    (5) V -> id = fold ( . id , Lista , numInt )
 
-    (               shift and go to state 12
-    numInt          shift and go to state 15
-    numF            shift and go to state 20
-    id              shift and go to state 10
-    aleatorio       shift and go to state 21
+    id              shift and go to state 44
 
-    T                              shift and go to state 43
-    F                              shift and go to state 19
 
 state 30
 
-    (17) E -> E - . T
-    (19) T -> . T / F
-    (20) T -> . T * F
-    (21) T -> . F
-    (22) F -> . ( E )
-    (23) F -> . numInt
-    (24) F -> . numF
-    (25) F -> . id
-    (26) F -> . id [ numInt ]
-    (27) F -> . aleatorio ( numInt )
+    (17) E -> E + . T
+    (20) T -> . T / F
+    (21) T -> . T * F
+    (22) T -> . F
+    (23) F -> . ( E )
+    (24) F -> . numInt
+    (25) F -> . numF
+    (26) F -> . id
+    (27) F -> . id [ numInt ]
+    (28) F -> . aleatorio ( numInt )
 
     (               shift and go to state 12
     numInt          shift and go to state 15
-    numF            shift and go to state 20
+    numF            shift and go to state 21
     id              shift and go to state 10
-    aleatorio       shift and go to state 21
+    aleatorio       shift and go to state 22
 
-    T                              shift and go to state 44
-    F                              shift and go to state 19
+    T                              shift and go to state 45
+    F                              shift and go to state 20
 
 state 31
 
-    (19) T -> T / . F
-    (22) F -> . ( E )
-    (23) F -> . numInt
-    (24) F -> . numF
-    (25) F -> . id
-    (26) F -> . id [ numInt ]
-    (27) F -> . aleatorio ( numInt )
+    (18) E -> E - . T
+    (20) T -> . T / F
+    (21) T -> . T * F
+    (22) T -> . F
+    (23) F -> . ( E )
+    (24) F -> . numInt
+    (25) F -> . numF
+    (26) F -> . id
+    (27) F -> . id [ numInt ]
+    (28) F -> . aleatorio ( numInt )
 
     (               shift and go to state 12
     numInt          shift and go to state 15
-    numF            shift and go to state 20
+    numF            shift and go to state 21
     id              shift and go to state 10
-    aleatorio       shift and go to state 21
+    aleatorio       shift and go to state 22
 
-    F                              shift and go to state 45
+    T                              shift and go to state 46
+    F                              shift and go to state 20
 
 state 32
 
-    (20) T -> T * . F
-    (22) F -> . ( E )
-    (23) F -> . numInt
-    (24) F -> . numF
-    (25) F -> . id
-    (26) F -> . id [ numInt ]
-    (27) F -> . aleatorio ( numInt )
+    (16) V -> id = entrada ( . )
 
-    (               shift and go to state 12
-    numInt          shift and go to state 15
-    numF            shift and go to state 20
-    id              shift and go to state 10
-    aleatorio       shift and go to state 21
+    )               shift and go to state 47
 
-    F                              shift and go to state 46
 
 state 33
 
-    (8) Lista -> [ ListIn . ]
+    (20) T -> T / . F
+    (23) F -> . ( E )
+    (24) F -> . numInt
+    (25) F -> . numF
+    (26) F -> . id
+    (27) F -> . id [ numInt ]
+    (28) F -> . aleatorio ( numInt )
 
-    ]               shift and go to state 47
+    (               shift and go to state 12
+    numInt          shift and go to state 15
+    numF            shift and go to state 21
+    id              shift and go to state 10
+    aleatorio       shift and go to state 22
 
+    F                              shift and go to state 48
 
 state 34
+
+    (21) T -> T * . F
+    (23) F -> . ( E )
+    (24) F -> . numInt
+    (25) F -> . numF
+    (26) F -> . id
+    (27) F -> . id [ numInt ]
+    (28) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 12
+    numInt          shift and go to state 15
+    numF            shift and go to state 21
+    id              shift and go to state 10
+    aleatorio       shift and go to state 22
+
+    F                              shift and go to state 49
+
+state 35
+
+    (8) Lista -> [ ListIn . ]
+
+    ]               shift and go to state 50
+
+
+state 36
 
     (9) ListIn -> numInt . , ListIn
     (10) ListIn -> numInt .
 
-    ,               shift and go to state 48
+    ,               shift and go to state 51
     ]               reduce using rule 10 (ListIn -> numInt .)
 
 
-state 35
+state 37
 
-    (27) F -> aleatorio ( . numInt )
+    (28) F -> aleatorio ( . numInt )
 
-    numInt          shift and go to state 49
+    numInt          shift and go to state 52
 
 
-state 36
+state 38
 
     (15) V -> escrever ( Texto ) .
 
     ;               reduce using rule 15 (V -> escrever ( Texto ) .)
 
 
-state 37
+state 39
 
     (14) Texto -> Texto < . > Texto
 
-    >               shift and go to state 50
-
-
-state 38
-
-    (13) Texto -> id [ . numInt ]
-
-    numInt          shift and go to state 51
-
-
-state 39
-
-    (26) F -> id [ numInt . ]
-
-    ]               shift and go to state 52
+    >               shift and go to state 53
 
 
 state 40
 
-    (4) V -> id = map ( id . , Lista )
+    (13) Texto -> id [ . numInt ]
 
-    ,               shift and go to state 53
+    numInt          shift and go to state 54
 
 
 state 41
 
-    (22) F -> ( E ) .
+    (27) F -> id [ numInt . ]
 
-    /               reduce using rule 22 (F -> ( E ) .)
-    *               reduce using rule 22 (F -> ( E ) .)
-    +               reduce using rule 22 (F -> ( E ) .)
-    -               reduce using rule 22 (F -> ( E ) .)
-    ;               reduce using rule 22 (F -> ( E ) .)
-    )               reduce using rule 22 (F -> ( E ) .)
+    ]               shift and go to state 55
 
 
 state 42
 
-    (5) V -> id = fold ( id . , Lista , numInt )
+    (4) V -> id = map ( id . , Lista )
 
-    ,               shift and go to state 54
+    ,               shift and go to state 56
 
 
 state 43
 
-    (16) E -> E + T .
-    (19) T -> T . / F
-    (20) T -> T . * F
+    (23) F -> ( E ) .
 
-    +               reduce using rule 16 (E -> E + T .)
-    -               reduce using rule 16 (E -> E + T .)
-    ;               reduce using rule 16 (E -> E + T .)
-    )               reduce using rule 16 (E -> E + T .)
-    /               shift and go to state 31
-    *               shift and go to state 32
+    /               reduce using rule 23 (F -> ( E ) .)
+    *               reduce using rule 23 (F -> ( E ) .)
+    +               reduce using rule 23 (F -> ( E ) .)
+    -               reduce using rule 23 (F -> ( E ) .)
+    ;               reduce using rule 23 (F -> ( E ) .)
+    )               reduce using rule 23 (F -> ( E ) .)
 
 
 state 44
 
-    (17) E -> E - T .
-    (19) T -> T . / F
-    (20) T -> T . * F
+    (5) V -> id = fold ( id . , Lista , numInt )
 
-    +               reduce using rule 17 (E -> E - T .)
-    -               reduce using rule 17 (E -> E - T .)
-    ;               reduce using rule 17 (E -> E - T .)
-    )               reduce using rule 17 (E -> E - T .)
-    /               shift and go to state 31
-    *               shift and go to state 32
+    ,               shift and go to state 57
 
 
 state 45
 
-    (19) T -> T / F .
+    (17) E -> E + T .
+    (20) T -> T . / F
+    (21) T -> T . * F
 
-    /               reduce using rule 19 (T -> T / F .)
-    *               reduce using rule 19 (T -> T / F .)
-    +               reduce using rule 19 (T -> T / F .)
-    -               reduce using rule 19 (T -> T / F .)
-    ;               reduce using rule 19 (T -> T / F .)
-    )               reduce using rule 19 (T -> T / F .)
+    +               reduce using rule 17 (E -> E + T .)
+    -               reduce using rule 17 (E -> E + T .)
+    ;               reduce using rule 17 (E -> E + T .)
+    )               reduce using rule 17 (E -> E + T .)
+    /               shift and go to state 33
+    *               shift and go to state 34
 
 
 state 46
 
-    (20) T -> T * F .
+    (18) E -> E - T .
+    (20) T -> T . / F
+    (21) T -> T . * F
 
-    /               reduce using rule 20 (T -> T * F .)
-    *               reduce using rule 20 (T -> T * F .)
-    +               reduce using rule 20 (T -> T * F .)
-    -               reduce using rule 20 (T -> T * F .)
-    ;               reduce using rule 20 (T -> T * F .)
-    )               reduce using rule 20 (T -> T * F .)
+    +               reduce using rule 18 (E -> E - T .)
+    -               reduce using rule 18 (E -> E - T .)
+    ;               reduce using rule 18 (E -> E - T .)
+    )               reduce using rule 18 (E -> E - T .)
+    /               shift and go to state 33
+    *               shift and go to state 34
 
 
 state 47
+
+    (16) V -> id = entrada ( ) .
+
+    ;               reduce using rule 16 (V -> id = entrada ( ) .)
+
+
+state 48
+
+    (20) T -> T / F .
+
+    /               reduce using rule 20 (T -> T / F .)
+    *               reduce using rule 20 (T -> T / F .)
+    +               reduce using rule 20 (T -> T / F .)
+    -               reduce using rule 20 (T -> T / F .)
+    ;               reduce using rule 20 (T -> T / F .)
+    )               reduce using rule 20 (T -> T / F .)
+
+
+state 49
+
+    (21) T -> T * F .
+
+    /               reduce using rule 21 (T -> T * F .)
+    *               reduce using rule 21 (T -> T * F .)
+    +               reduce using rule 21 (T -> T * F .)
+    -               reduce using rule 21 (T -> T * F .)
+    ;               reduce using rule 21 (T -> T * F .)
+    )               reduce using rule 21 (T -> T * F .)
+
+
+state 50
 
     (8) Lista -> [ ListIn ] .
 
@@ -626,24 +652,24 @@ state 47
     ,               reduce using rule 8 (Lista -> [ ListIn ] .)
 
 
-state 48
+state 51
 
     (9) ListIn -> numInt , . ListIn
     (9) ListIn -> . numInt , ListIn
     (10) ListIn -> . numInt
 
-    numInt          shift and go to state 34
+    numInt          shift and go to state 36
 
-    ListIn                         shift and go to state 55
+    ListIn                         shift and go to state 58
 
-state 49
+state 52
 
-    (27) F -> aleatorio ( numInt . )
+    (28) F -> aleatorio ( numInt . )
 
-    )               shift and go to state 56
+    )               shift and go to state 59
 
 
-state 50
+state 53
 
     (14) Texto -> Texto < > . Texto
     (11) Texto -> . texto
@@ -651,80 +677,80 @@ state 50
     (13) Texto -> . id [ numInt ]
     (14) Texto -> . Texto < > Texto
 
-    texto           shift and go to state 23
-    id              shift and go to state 24
+    texto           shift and go to state 24
+    id              shift and go to state 25
 
-    Texto                          shift and go to state 57
+    Texto                          shift and go to state 60
 
-state 51
+state 54
 
     (13) Texto -> id [ numInt . ]
 
-    ]               shift and go to state 58
+    ]               shift and go to state 61
 
 
-state 52
+state 55
 
-    (26) F -> id [ numInt ] .
+    (27) F -> id [ numInt ] .
 
-    /               reduce using rule 26 (F -> id [ numInt ] .)
-    *               reduce using rule 26 (F -> id [ numInt ] .)
-    +               reduce using rule 26 (F -> id [ numInt ] .)
-    -               reduce using rule 26 (F -> id [ numInt ] .)
-    ;               reduce using rule 26 (F -> id [ numInt ] .)
-    )               reduce using rule 26 (F -> id [ numInt ] .)
+    /               reduce using rule 27 (F -> id [ numInt ] .)
+    *               reduce using rule 27 (F -> id [ numInt ] .)
+    +               reduce using rule 27 (F -> id [ numInt ] .)
+    -               reduce using rule 27 (F -> id [ numInt ] .)
+    ;               reduce using rule 27 (F -> id [ numInt ] .)
+    )               reduce using rule 27 (F -> id [ numInt ] .)
 
 
-state 53
+state 56
 
     (4) V -> id = map ( id , . Lista )
     (8) Lista -> . [ ListIn ]
 
-    [               shift and go to state 18
+    [               shift and go to state 19
 
-    Lista                          shift and go to state 59
+    Lista                          shift and go to state 62
 
-state 54
+state 57
 
     (5) V -> id = fold ( id , . Lista , numInt )
     (8) Lista -> . [ ListIn ]
 
-    [               shift and go to state 18
+    [               shift and go to state 19
 
-    Lista                          shift and go to state 60
+    Lista                          shift and go to state 63
 
-state 55
+state 58
 
     (9) ListIn -> numInt , ListIn .
 
     ]               reduce using rule 9 (ListIn -> numInt , ListIn .)
 
 
-state 56
+state 59
 
-    (27) F -> aleatorio ( numInt ) .
+    (28) F -> aleatorio ( numInt ) .
 
-    /               reduce using rule 27 (F -> aleatorio ( numInt ) .)
-    *               reduce using rule 27 (F -> aleatorio ( numInt ) .)
-    +               reduce using rule 27 (F -> aleatorio ( numInt ) .)
-    -               reduce using rule 27 (F -> aleatorio ( numInt ) .)
-    ;               reduce using rule 27 (F -> aleatorio ( numInt ) .)
-    )               reduce using rule 27 (F -> aleatorio ( numInt ) .)
+    /               reduce using rule 28 (F -> aleatorio ( numInt ) .)
+    *               reduce using rule 28 (F -> aleatorio ( numInt ) .)
+    +               reduce using rule 28 (F -> aleatorio ( numInt ) .)
+    -               reduce using rule 28 (F -> aleatorio ( numInt ) .)
+    ;               reduce using rule 28 (F -> aleatorio ( numInt ) .)
+    )               reduce using rule 28 (F -> aleatorio ( numInt ) .)
 
 
-state 57
+state 60
 
     (14) Texto -> Texto < > Texto .
     (14) Texto -> Texto . < > Texto
 
   ! shift/reduce conflict for < resolved as shift
     )               reduce using rule 14 (Texto -> Texto < > Texto .)
-    <               shift and go to state 37
+    <               shift and go to state 39
 
   ! <               [ reduce using rule 14 (Texto -> Texto < > Texto .) ]
 
 
-state 58
+state 61
 
     (13) Texto -> id [ numInt ] .
 
@@ -732,42 +758,42 @@ state 58
     <               reduce using rule 13 (Texto -> id [ numInt ] .)
 
 
-state 59
+state 62
 
     (4) V -> id = map ( id , Lista . )
 
-    )               shift and go to state 61
+    )               shift and go to state 64
 
 
-state 60
+state 63
 
     (5) V -> id = fold ( id , Lista . , numInt )
 
-    ,               shift and go to state 62
+    ,               shift and go to state 65
 
 
-state 61
+state 64
 
     (4) V -> id = map ( id , Lista ) .
 
     ;               reduce using rule 4 (V -> id = map ( id , Lista ) .)
 
 
-state 62
+state 65
 
     (5) V -> id = fold ( id , Lista , . numInt )
 
-    numInt          shift and go to state 63
+    numInt          shift and go to state 66
 
 
-state 63
+state 66
 
     (5) V -> id = fold ( id , Lista , numInt . )
 
-    )               shift and go to state 64
+    )               shift and go to state 67
 
 
-state 64
+state 67
 
     (5) V -> id = fold ( id , Lista , numInt ) .
 
@@ -776,4 +802,4 @@ state 64
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for < in state 57 resolved as shift
+WARNING: shift/reduce conflict for < in state 60 resolved as shift

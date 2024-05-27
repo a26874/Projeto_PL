@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'left+-left*/aleatorio comentarioMult comentarioOne entrada escrever fim fold funcao id map numF numInt texto Z :  LstV \';\'          LstV :  V           LstV : LstV \';\' V  V : id \'=\' map \'(\' id \',\' Lista \')\' V : id \'=\' fold \'(\' id \',\' Lista \',\' numInt \')\'  V : id \'=\' E  V : id \'=\' Lista  Lista : \'[\' ListIn \']\'  ListIn : numInt \',\' ListIn ListIn : numInt Texto :  texto   Texto : id    Texto : id "[" numInt "]"  Texto : Texto "<" ">" Texto   V : escrever "(" Texto ")"   E : E \'+\' T  E : E \'-\' T  E : T  T : T \'/\' F  T : T \'*\' F  T : F   F : \'(\' E \')\'   F : numInt    F : numF    F : id    F : id "[" numInt "]"  F : aleatorio "(" numInt ")" '
+_lr_signature = 'left+-left*/aleatorio comentarioMult comentarioOne entrada escrever fim fold funcao id map numF numInt texto Z :  LstV \';\'          LstV :  V           LstV : LstV \';\' V  V : id \'=\' map \'(\' id \',\' Lista \')\' V : id \'=\' fold \'(\' id \',\' Lista \',\' numInt \')\'  V : id \'=\' E  V : id \'=\' Lista  Lista : \'[\' ListIn \']\'  ListIn : numInt \',\' ListIn ListIn : numInt Texto :  texto   Texto : id    Texto : id "[" numInt "]"  Texto : Texto "<" ">" Texto   V : escrever "(" Texto ")"   V : id \'=\' entrada \'(\' \')\'   E : E \'+\' T  E : E \'-\' T  E : T  T : T \'/\' F  T : T \'*\' F  T : F   F : \'(\' E \')\'   F : numInt    F : numF    F : id    F : id "[" numInt "]"  F : aleatorio "(" numInt ")" '
     
-_lr_action_items = {'id':([0,6,7,8,12,26,28,29,30,31,32,50,],[4,4,10,24,10,40,42,10,10,10,10,24,]),'escrever':([0,6,],[5,5,]),'$end':([1,6,],[0,-1,]),';':([2,3,9,10,13,15,16,17,19,20,36,41,43,44,45,46,47,52,56,61,64,],[6,-2,-3,-25,-7,-23,-6,-18,-21,-24,-15,-22,-16,-17,-19,-20,-8,-26,-27,-4,-5,]),'=':([4,],[7,]),'(':([5,7,11,12,14,21,29,30,31,32,],[8,12,26,12,28,35,12,12,12,12,]),'map':([7,],[11,]),'fold':([7,],[14,]),'[':([7,10,24,53,54,],[18,25,38,18,18,]),'numInt':([7,12,18,25,29,30,31,32,35,38,48,62,],[15,15,34,39,15,15,15,15,49,51,34,63,]),'numF':([7,12,29,30,31,32,],[20,20,20,20,20,20,]),'aleatorio':([7,12,29,30,31,32,],[21,21,21,21,21,21,]),'texto':([8,50,],[23,23,]),'/':([10,15,17,19,20,41,43,44,45,46,52,56,],[-25,-23,31,-21,-24,-22,31,31,-19,-20,-26,-27,]),'*':([10,15,17,19,20,41,43,44,45,46,52,56,],[-25,-23,32,-21,-24,-22,32,32,-19,-20,-26,-27,]),'+':([10,15,16,17,19,20,27,41,43,44,45,46,52,56,],[-25,-23,29,-18,-21,-24,29,-22,-16,-17,-19,-20,-26,-27,]),'-':([10,15,16,17,19,20,27,41,43,44,45,46,52,56,],[-25,-23,30,-18,-21,-24,30,-22,-16,-17,-19,-20,-26,-27,]),')':([10,15,17,19,20,22,23,24,27,41,43,44,45,46,47,49,52,56,57,58,59,63,],[-25,-23,-18,-21,-24,36,-11,-12,41,-22,-16,-17,-19,-20,-8,56,-26,-27,-14,-13,61,64,]),'<':([22,23,24,57,58,],[37,-11,-12,37,-13,]),']':([33,34,39,51,55,],[47,-10,52,58,-9,]),',':([34,40,42,47,60,],[48,53,54,-8,62,]),'>':([37,],[50,]),}
+_lr_action_items = {'id':([0,6,7,8,12,27,29,30,31,33,34,53,],[4,4,10,25,10,42,44,10,10,10,10,25,]),'escrever':([0,6,],[5,5,]),'$end':([1,6,],[0,-1,]),';':([2,3,9,10,13,15,16,18,20,21,38,43,45,46,47,48,49,50,55,59,64,67,],[6,-2,-3,-26,-7,-24,-6,-19,-22,-25,-15,-23,-17,-18,-16,-20,-21,-8,-27,-28,-4,-5,]),'=':([4,],[7,]),'(':([5,7,11,12,14,17,22,30,31,33,34,],[8,12,27,12,29,32,37,12,12,12,12,]),'map':([7,],[11,]),'fold':([7,],[14,]),'entrada':([7,],[17,]),'[':([7,10,25,56,57,],[19,26,40,19,19,]),'numInt':([7,12,19,26,30,31,33,34,37,40,51,65,],[15,15,36,41,15,15,15,15,52,54,36,66,]),'numF':([7,12,30,31,33,34,],[21,21,21,21,21,21,]),'aleatorio':([7,12,30,31,33,34,],[22,22,22,22,22,22,]),'texto':([8,53,],[24,24,]),'/':([10,15,18,20,21,43,45,46,48,49,55,59,],[-26,-24,33,-22,-25,-23,33,33,-20,-21,-27,-28,]),'*':([10,15,18,20,21,43,45,46,48,49,55,59,],[-26,-24,34,-22,-25,-23,34,34,-20,-21,-27,-28,]),'+':([10,15,16,18,20,21,28,43,45,46,48,49,55,59,],[-26,-24,30,-19,-22,-25,30,-23,-17,-18,-20,-21,-27,-28,]),'-':([10,15,16,18,20,21,28,43,45,46,48,49,55,59,],[-26,-24,31,-19,-22,-25,31,-23,-17,-18,-20,-21,-27,-28,]),')':([10,15,18,20,21,23,24,25,28,32,43,45,46,48,49,50,52,55,59,60,61,62,66,],[-26,-24,-19,-22,-25,38,-11,-12,43,47,-23,-17,-18,-20,-21,-8,59,-27,-28,-14,-13,64,67,]),'<':([23,24,25,60,61,],[39,-11,-12,39,-13,]),']':([35,36,41,54,58,],[50,-10,55,61,-9,]),',':([36,42,44,50,63,],[51,56,57,-8,65,]),'>':([39,],[53,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'Z':([0,],[1,]),'LstV':([0,],[2,]),'V':([0,6,],[3,9,]),'Lista':([7,53,54,],[13,59,60,]),'E':([7,12,],[16,27,]),'T':([7,12,29,30,],[17,17,43,44,]),'F':([7,12,29,30,31,32,],[19,19,19,19,45,46,]),'Texto':([8,50,],[22,57,]),'ListIn':([18,48,],[33,55,]),}
+_lr_goto_items = {'Z':([0,],[1,]),'LstV':([0,],[2,]),'V':([0,6,],[3,9,]),'Lista':([7,56,57,],[13,62,63,]),'E':([7,12,],[16,28,]),'T':([7,12,30,31,],[18,18,45,46,]),'F':([7,12,30,31,33,34,],[20,20,20,20,48,49,]),'Texto':([8,53,],[23,60,]),'ListIn':([19,51,],[35,58,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -35,23 +35,24 @@ _lr_productions = [
   ('V -> id = E','V',3,'p_atribArith','arith_grammar.py',68),
   ('V -> id = Lista','V',3,'p_atribList','arith_grammar.py',73),
   ('Lista -> [ ListIn ]','Lista',3,'p_lista','arith_grammar.py',80),
-  ('ListIn -> numInt , ListIn','ListIn',3,'p_list1','arith_grammar.py',83),
-  ('ListIn -> numInt','ListIn',1,'p_list2','arith_grammar.py',93),
-  ('Texto -> texto','Texto',1,'p_text_1','arith_grammar.py',99),
-  ('Texto -> id','Texto',1,'p_text_2','arith_grammar.py',103),
-  ('Texto -> id [ numInt ]','Texto',4,'p_text_3','arith_grammar.py',107),
+  ('ListIn -> numInt , ListIn','ListIn',3,'p_list1','arith_grammar.py',84),
+  ('ListIn -> numInt','ListIn',1,'p_list2','arith_grammar.py',94),
+  ('Texto -> texto','Texto',1,'p_text_1','arith_grammar.py',100),
+  ('Texto -> id','Texto',1,'p_text_2','arith_grammar.py',104),
+  ('Texto -> id [ numInt ]','Texto',4,'p_text_3','arith_grammar.py',108),
   ('Texto -> Texto < > Texto','Texto',4,'p_text_concat','arith_grammar.py',112),
   ('V -> escrever ( Texto )','V',4,'p_esc','arith_grammar.py',125),
-  ('E -> E + T','E',3,'p_expr_soma','arith_grammar.py',134),
-  ('E -> E - T','E',3,'p_expr_sub','arith_grammar.py',139),
-  ('E -> T','E',1,'p_expr1','arith_grammar.py',144),
-  ('T -> T / F','T',3,'p_expr_div','arith_grammar.py',148),
-  ('T -> T * F','T',3,'p_expr_mult','arith_grammar.py',153),
-  ('T -> F','T',1,'p_expr2','arith_grammar.py',158),
-  ('F -> ( E )','F',3,'p_expr3','arith_grammar.py',162),
-  ('F -> numInt','F',1,'p_expr4','arith_grammar.py',168),
-  ('F -> numF','F',1,'p_expr5','arith_grammar.py',172),
-  ('F -> id','F',1,'p_expr6','arith_grammar.py',176),
-  ('F -> id [ numInt ]','F',4,'p_expr7','arith_grammar.py',180),
-  ('F -> aleatorio ( numInt )','F',4,'p_rand','arith_grammar.py',184),
+  ('V -> id = entrada ( )','V',5,'p_ent','arith_grammar.py',134),
+  ('E -> E + T','E',3,'p_expr_soma','arith_grammar.py',141),
+  ('E -> E - T','E',3,'p_expr_sub','arith_grammar.py',146),
+  ('E -> T','E',1,'p_expr1','arith_grammar.py',151),
+  ('T -> T / F','T',3,'p_expr_div','arith_grammar.py',155),
+  ('T -> T * F','T',3,'p_expr_mult','arith_grammar.py',160),
+  ('T -> F','T',1,'p_expr2','arith_grammar.py',165),
+  ('F -> ( E )','F',3,'p_expr3','arith_grammar.py',169),
+  ('F -> numInt','F',1,'p_expr4','arith_grammar.py',175),
+  ('F -> numF','F',1,'p_expr5','arith_grammar.py',179),
+  ('F -> id','F',1,'p_expr6','arith_grammar.py',183),
+  ('F -> id [ numInt ]','F',4,'p_expr7','arith_grammar.py',187),
+  ('F -> aleatorio ( numInt )','F',4,'p_rand','arith_grammar.py',191),
 ]

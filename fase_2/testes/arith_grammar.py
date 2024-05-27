@@ -79,6 +79,7 @@ class ArithGrammar:
     def p_lista(self, p):
         """ Lista : '[' ListIn ']' """
         p[0] = p[2]
+
     def p_list1(self, p):
         """ ListIn : numInt ',' ListIn"""
         p[0] = []
@@ -107,7 +108,6 @@ class ArithGrammar:
         """  Texto : id "[" numInt "]" """
         p[0] = {'var': p[1], 'index': p[3]}
 
-
     def p_text_concat(self, p):
         """ Texto : Texto "<" ">" Texto  """
         p[0] = list()
@@ -127,6 +127,13 @@ class ArithGrammar:
             p[3] = [p[3]]
         p[0] = {'op': 'esc',
                 'args': p[3]}
+
+    # input
+
+    def p_ent(self, p):
+        """ V : id '=' entrada '(' ')'  """
+        p[0] = {'op': 'atr',
+                'args': [p[1], "input"]}
 
     # aritmetrica
 

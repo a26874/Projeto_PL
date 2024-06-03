@@ -3,8 +3,8 @@ import ply.lex as plex
 
 class Lexer:
     
-    tokens= ("numInt","numF","id","funcao","fim","aleatorio","entrada", "map", "fold","escrever","texto","comentarioOne","comentarioMult")
-    literals = ['*', '+', '(', ')','-','/',',',':',';','=','<','>','#','[',']']
+    tokens= ("numInt","numF","id","funcao","fim","aleatorio","entrada", "map", "fold","escrever","texto","comentarioOne","comentarioMult","se","fazer","true","false",'backlash')
+    literals = ['*', '+', '(', ')','-','/',',',':',';','=','<','>','#','[',']','!','\\']
     t_ignore = " \n"
         
     def __init__(self):
@@ -15,7 +15,15 @@ class Lexer:
     t_entrada = r"ENTRADA"
     t_funcao = r"FUNCAO"
     t_fim = r"FIM"
-    
+    t_se = r"SE"
+    t_fazer = r"FAZER"
+    t_true = r"True"
+    t_false = r"False"
+
+    def t_backlash(self, t):
+        r'\\'
+        return t
+
     def t_map(self,t):
         r"map"
         return t
@@ -33,7 +41,7 @@ class Lexer:
         return t
     
     def t_id(self,t):
-        r"[a-z][a-z0-9]*"
+        r"[a-z][a-z0-9_]*[?!]?"
         return t
 
     def t_texto(self,t):
@@ -50,6 +58,7 @@ class Lexer:
         r"[0-9]+"
         t.value = int (t.value)
         return t
+
 
     def build(self, **kwargs):
         self.lexer = plex.lex(module=self, **kwargs)

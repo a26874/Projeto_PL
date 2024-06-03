@@ -1,0 +1,1620 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    fold
+    funcao
+    map
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> LstI
+Rule 2     LstI -> LstI Inst ;
+Rule 3     LstI -> LstI InstC
+Rule 4     LstI -> Inst ;
+Rule 5     LstI -> InstC
+Rule 6     InstC -> comentarioOne
+Rule 7     InstC -> comentarioMult
+Rule 8     Inst -> V
+Rule 9     Inst -> se Comp fazer : S fim
+Rule 10    V -> id = E
+Rule 11    V -> id = texto
+Rule 12    V -> id = Lista
+Rule 13    V -> id = true
+Rule 14    V -> id = false
+Rule 15    Lista -> [ ListIn ]
+Rule 16    Lista -> [ ]
+Rule 17    ListIn -> numInt , ListIn
+Rule 18    ListIn -> numInt
+Rule 19    Texto -> texto
+Rule 20    Texto -> E
+Rule 21    Texto -> Texto < > Texto
+Rule 22    V -> escrever ( Texto )
+Rule 23    V -> id = entrada ( )
+Rule 24    E -> E + T
+Rule 25    E -> E - T
+Rule 26    E -> T
+Rule 27    T -> T / F
+Rule 28    T -> T * F
+Rule 29    T -> F
+Rule 30    F -> ( E )
+Rule 31    F -> numInt
+Rule 32    F -> numF
+Rule 33    F -> id
+Rule 34    F -> id [ numInt ]
+Rule 35    F -> aleatorio ( numInt )
+Rule 36    Comp -> CompF ! = CompF
+Rule 37    Comp -> Comp / backlash Comp
+Rule 38    Comp -> Comp backlash / Comp
+Rule 39    Comp -> CompF = = CompF
+Rule 40    Comp -> CompF > CompF
+Rule 41    Comp -> CompF > = CompF
+Rule 42    Comp -> CompF < CompF
+Rule 43    Comp -> CompF < = CompF
+Rule 44    CompF -> ( Comp )
+Rule 45    CompF -> true
+Rule 46    CompF -> false
+Rule 47    CompF -> E
+
+Terminals, with rules where they appear
+
+!                    : 36
+(                    : 22 23 30 35 44
+)                    : 22 23 30 35 44
+*                    : 28
++                    : 24
+,                    : 17
+-                    : 25
+/                    : 27 37 38
+:                    : 9
+;                    : 2 4
+<                    : 21 42 43
+=                    : 10 11 12 13 14 23 36 39 39 41 43
+>                    : 21 40 41
+[                    : 15 16 34
+]                    : 15 16 34
+aleatorio            : 35
+backlash             : 37 38
+comentarioMult       : 7
+comentarioOne        : 6
+entrada              : 23
+error                : 
+escrever             : 22
+false                : 14 46
+fazer                : 9
+fim                  : 9
+fold                 : 
+funcao               : 
+id                   : 10 11 12 13 14 23 33 34
+map                  : 
+numF                 : 32
+numInt               : 17 18 31 34 35
+se                   : 9
+texto                : 11 19
+true                 : 13 45
+
+Nonterminals, with rules where they appear
+
+Comp                 : 9 37 37 38 38 44
+CompF                : 36 36 39 39 40 40 41 41 42 42 43 43
+E                    : 10 20 24 25 30 47
+F                    : 27 28 29
+Inst                 : 2 4
+InstC                : 3 5
+ListIn               : 15 17
+Lista                : 12
+LstI                 : 1 2 3
+S                    : 9 0
+T                    : 24 25 26 27 28
+Texto                : 21 21 22
+V                    : 8
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . LstI
+    (2) LstI -> . LstI Inst ;
+    (3) LstI -> . LstI InstC
+    (4) LstI -> . Inst ;
+    (5) LstI -> . InstC
+    (8) Inst -> . V
+    (9) Inst -> . se Comp fazer : S fim
+    (6) InstC -> . comentarioOne
+    (7) InstC -> . comentarioMult
+    (10) V -> . id = E
+    (11) V -> . id = texto
+    (12) V -> . id = Lista
+    (13) V -> . id = true
+    (14) V -> . id = false
+    (22) V -> . escrever ( Texto )
+    (23) V -> . id = entrada ( )
+
+    se              shift and go to state 6
+    comentarioOne   shift and go to state 7
+    comentarioMult  shift and go to state 8
+    id              shift and go to state 9
+    escrever        shift and go to state 10
+
+    S                              shift and go to state 1
+    LstI                           shift and go to state 2
+    Inst                           shift and go to state 3
+    InstC                          shift and go to state 4
+    V                              shift and go to state 5
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> LstI .
+    (2) LstI -> LstI . Inst ;
+    (3) LstI -> LstI . InstC
+    (8) Inst -> . V
+    (9) Inst -> . se Comp fazer : S fim
+    (6) InstC -> . comentarioOne
+    (7) InstC -> . comentarioMult
+    (10) V -> . id = E
+    (11) V -> . id = texto
+    (12) V -> . id = Lista
+    (13) V -> . id = true
+    (14) V -> . id = false
+    (22) V -> . escrever ( Texto )
+    (23) V -> . id = entrada ( )
+
+    $end            reduce using rule 1 (S -> LstI .)
+    fim             reduce using rule 1 (S -> LstI .)
+    se              shift and go to state 6
+    comentarioOne   shift and go to state 7
+    comentarioMult  shift and go to state 8
+    id              shift and go to state 9
+    escrever        shift and go to state 10
+
+    Inst                           shift and go to state 11
+    InstC                          shift and go to state 12
+    V                              shift and go to state 5
+
+state 3
+
+    (4) LstI -> Inst . ;
+
+    ;               shift and go to state 13
+
+
+state 4
+
+    (5) LstI -> InstC .
+
+    se              reduce using rule 5 (LstI -> InstC .)
+    comentarioOne   reduce using rule 5 (LstI -> InstC .)
+    comentarioMult  reduce using rule 5 (LstI -> InstC .)
+    id              reduce using rule 5 (LstI -> InstC .)
+    escrever        reduce using rule 5 (LstI -> InstC .)
+    $end            reduce using rule 5 (LstI -> InstC .)
+    fim             reduce using rule 5 (LstI -> InstC .)
+
+
+state 5
+
+    (8) Inst -> V .
+
+    ;               reduce using rule 8 (Inst -> V .)
+
+
+state 6
+
+    (9) Inst -> se . Comp fazer : S fim
+    (36) Comp -> . CompF ! = CompF
+    (37) Comp -> . Comp / backlash Comp
+    (38) Comp -> . Comp backlash / Comp
+    (39) Comp -> . CompF = = CompF
+    (40) Comp -> . CompF > CompF
+    (41) Comp -> . CompF > = CompF
+    (42) Comp -> . CompF < CompF
+    (43) Comp -> . CompF < = CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    Comp                           shift and go to state 14
+    CompF                          shift and go to state 15
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 7
+
+    (6) InstC -> comentarioOne .
+
+    se              reduce using rule 6 (InstC -> comentarioOne .)
+    comentarioOne   reduce using rule 6 (InstC -> comentarioOne .)
+    comentarioMult  reduce using rule 6 (InstC -> comentarioOne .)
+    id              reduce using rule 6 (InstC -> comentarioOne .)
+    escrever        reduce using rule 6 (InstC -> comentarioOne .)
+    $end            reduce using rule 6 (InstC -> comentarioOne .)
+    fim             reduce using rule 6 (InstC -> comentarioOne .)
+
+
+state 8
+
+    (7) InstC -> comentarioMult .
+
+    se              reduce using rule 7 (InstC -> comentarioMult .)
+    comentarioOne   reduce using rule 7 (InstC -> comentarioMult .)
+    comentarioMult  reduce using rule 7 (InstC -> comentarioMult .)
+    id              reduce using rule 7 (InstC -> comentarioMult .)
+    escrever        reduce using rule 7 (InstC -> comentarioMult .)
+    $end            reduce using rule 7 (InstC -> comentarioMult .)
+    fim             reduce using rule 7 (InstC -> comentarioMult .)
+
+
+state 9
+
+    (10) V -> id . = E
+    (11) V -> id . = texto
+    (12) V -> id . = Lista
+    (13) V -> id . = true
+    (14) V -> id . = false
+    (23) V -> id . = entrada ( )
+
+    =               shift and go to state 26
+
+
+state 10
+
+    (22) V -> escrever . ( Texto )
+
+    (               shift and go to state 27
+
+
+state 11
+
+    (2) LstI -> LstI Inst . ;
+
+    ;               shift and go to state 28
+
+
+state 12
+
+    (3) LstI -> LstI InstC .
+
+    se              reduce using rule 3 (LstI -> LstI InstC .)
+    comentarioOne   reduce using rule 3 (LstI -> LstI InstC .)
+    comentarioMult  reduce using rule 3 (LstI -> LstI InstC .)
+    id              reduce using rule 3 (LstI -> LstI InstC .)
+    escrever        reduce using rule 3 (LstI -> LstI InstC .)
+    $end            reduce using rule 3 (LstI -> LstI InstC .)
+    fim             reduce using rule 3 (LstI -> LstI InstC .)
+
+
+state 13
+
+    (4) LstI -> Inst ; .
+
+    se              reduce using rule 4 (LstI -> Inst ; .)
+    comentarioOne   reduce using rule 4 (LstI -> Inst ; .)
+    comentarioMult  reduce using rule 4 (LstI -> Inst ; .)
+    id              reduce using rule 4 (LstI -> Inst ; .)
+    escrever        reduce using rule 4 (LstI -> Inst ; .)
+    $end            reduce using rule 4 (LstI -> Inst ; .)
+    fim             reduce using rule 4 (LstI -> Inst ; .)
+
+
+state 14
+
+    (9) Inst -> se Comp . fazer : S fim
+    (37) Comp -> Comp . / backlash Comp
+    (38) Comp -> Comp . backlash / Comp
+
+    fazer           shift and go to state 29
+    /               shift and go to state 30
+    backlash        shift and go to state 31
+
+
+state 15
+
+    (36) Comp -> CompF . ! = CompF
+    (39) Comp -> CompF . = = CompF
+    (40) Comp -> CompF . > CompF
+    (41) Comp -> CompF . > = CompF
+    (42) Comp -> CompF . < CompF
+    (43) Comp -> CompF . < = CompF
+
+    !               shift and go to state 32
+    =               shift and go to state 33
+    >               shift and go to state 34
+    <               shift and go to state 35
+
+
+state 16
+
+    (44) CompF -> ( . Comp )
+    (30) F -> ( . E )
+    (36) Comp -> . CompF ! = CompF
+    (37) Comp -> . Comp / backlash Comp
+    (38) Comp -> . Comp backlash / Comp
+    (39) Comp -> . CompF = = CompF
+    (40) Comp -> . CompF > CompF
+    (41) Comp -> . CompF > = CompF
+    (42) Comp -> . CompF < CompF
+    (43) Comp -> . CompF < = CompF
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    Comp                           shift and go to state 36
+    E                              shift and go to state 37
+    CompF                          shift and go to state 15
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 17
+
+    (45) CompF -> true .
+
+    !               reduce using rule 45 (CompF -> true .)
+    =               reduce using rule 45 (CompF -> true .)
+    >               reduce using rule 45 (CompF -> true .)
+    <               reduce using rule 45 (CompF -> true .)
+    fazer           reduce using rule 45 (CompF -> true .)
+    /               reduce using rule 45 (CompF -> true .)
+    backlash        reduce using rule 45 (CompF -> true .)
+    )               reduce using rule 45 (CompF -> true .)
+
+
+state 18
+
+    (46) CompF -> false .
+
+    !               reduce using rule 46 (CompF -> false .)
+    =               reduce using rule 46 (CompF -> false .)
+    >               reduce using rule 46 (CompF -> false .)
+    <               reduce using rule 46 (CompF -> false .)
+    fazer           reduce using rule 46 (CompF -> false .)
+    /               reduce using rule 46 (CompF -> false .)
+    backlash        reduce using rule 46 (CompF -> false .)
+    )               reduce using rule 46 (CompF -> false .)
+
+
+state 19
+
+    (47) CompF -> E .
+    (24) E -> E . + T
+    (25) E -> E . - T
+
+    !               reduce using rule 47 (CompF -> E .)
+    =               reduce using rule 47 (CompF -> E .)
+    >               reduce using rule 47 (CompF -> E .)
+    <               reduce using rule 47 (CompF -> E .)
+    fazer           reduce using rule 47 (CompF -> E .)
+    /               reduce using rule 47 (CompF -> E .)
+    backlash        reduce using rule 47 (CompF -> E .)
+    )               reduce using rule 47 (CompF -> E .)
+    +               shift and go to state 38
+    -               shift and go to state 39
+
+
+state 20
+
+    (26) E -> T .
+    (27) T -> T . / F
+    (28) T -> T . * F
+
+  ! shift/reduce conflict for / resolved as shift
+    +               reduce using rule 26 (E -> T .)
+    -               reduce using rule 26 (E -> T .)
+    !               reduce using rule 26 (E -> T .)
+    =               reduce using rule 26 (E -> T .)
+    >               reduce using rule 26 (E -> T .)
+    <               reduce using rule 26 (E -> T .)
+    )               reduce using rule 26 (E -> T .)
+    ;               reduce using rule 26 (E -> T .)
+    fazer           reduce using rule 26 (E -> T .)
+    backlash        reduce using rule 26 (E -> T .)
+    /               shift and go to state 40
+    *               shift and go to state 41
+
+  ! /               [ reduce using rule 26 (E -> T .) ]
+
+
+state 21
+
+    (29) T -> F .
+
+    /               reduce using rule 29 (T -> F .)
+    *               reduce using rule 29 (T -> F .)
+    +               reduce using rule 29 (T -> F .)
+    -               reduce using rule 29 (T -> F .)
+    !               reduce using rule 29 (T -> F .)
+    =               reduce using rule 29 (T -> F .)
+    >               reduce using rule 29 (T -> F .)
+    <               reduce using rule 29 (T -> F .)
+    )               reduce using rule 29 (T -> F .)
+    ;               reduce using rule 29 (T -> F .)
+    fazer           reduce using rule 29 (T -> F .)
+    backlash        reduce using rule 29 (T -> F .)
+
+
+state 22
+
+    (31) F -> numInt .
+
+    /               reduce using rule 31 (F -> numInt .)
+    *               reduce using rule 31 (F -> numInt .)
+    +               reduce using rule 31 (F -> numInt .)
+    -               reduce using rule 31 (F -> numInt .)
+    !               reduce using rule 31 (F -> numInt .)
+    =               reduce using rule 31 (F -> numInt .)
+    >               reduce using rule 31 (F -> numInt .)
+    <               reduce using rule 31 (F -> numInt .)
+    )               reduce using rule 31 (F -> numInt .)
+    ;               reduce using rule 31 (F -> numInt .)
+    fazer           reduce using rule 31 (F -> numInt .)
+    backlash        reduce using rule 31 (F -> numInt .)
+
+
+state 23
+
+    (32) F -> numF .
+
+    /               reduce using rule 32 (F -> numF .)
+    *               reduce using rule 32 (F -> numF .)
+    +               reduce using rule 32 (F -> numF .)
+    -               reduce using rule 32 (F -> numF .)
+    !               reduce using rule 32 (F -> numF .)
+    =               reduce using rule 32 (F -> numF .)
+    >               reduce using rule 32 (F -> numF .)
+    <               reduce using rule 32 (F -> numF .)
+    )               reduce using rule 32 (F -> numF .)
+    ;               reduce using rule 32 (F -> numF .)
+    fazer           reduce using rule 32 (F -> numF .)
+    backlash        reduce using rule 32 (F -> numF .)
+
+
+state 24
+
+    (33) F -> id .
+    (34) F -> id . [ numInt ]
+
+    /               reduce using rule 33 (F -> id .)
+    *               reduce using rule 33 (F -> id .)
+    +               reduce using rule 33 (F -> id .)
+    -               reduce using rule 33 (F -> id .)
+    !               reduce using rule 33 (F -> id .)
+    =               reduce using rule 33 (F -> id .)
+    >               reduce using rule 33 (F -> id .)
+    <               reduce using rule 33 (F -> id .)
+    )               reduce using rule 33 (F -> id .)
+    ;               reduce using rule 33 (F -> id .)
+    fazer           reduce using rule 33 (F -> id .)
+    backlash        reduce using rule 33 (F -> id .)
+    [               shift and go to state 42
+
+
+state 25
+
+    (35) F -> aleatorio . ( numInt )
+
+    (               shift and go to state 43
+
+
+state 26
+
+    (10) V -> id = . E
+    (11) V -> id = . texto
+    (12) V -> id = . Lista
+    (13) V -> id = . true
+    (14) V -> id = . false
+    (23) V -> id = . entrada ( )
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (15) Lista -> . [ ListIn ]
+    (16) Lista -> . [ ]
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    texto           shift and go to state 45
+    true            shift and go to state 47
+    false           shift and go to state 48
+    entrada         shift and go to state 49
+    [               shift and go to state 51
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    E                              shift and go to state 44
+    Lista                          shift and go to state 46
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 27
+
+    (22) V -> escrever ( . Texto )
+    (19) Texto -> . texto
+    (20) Texto -> . E
+    (21) Texto -> . Texto < > Texto
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    texto           shift and go to state 53
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    Texto                          shift and go to state 52
+    E                              shift and go to state 54
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 28
+
+    (2) LstI -> LstI Inst ; .
+
+    se              reduce using rule 2 (LstI -> LstI Inst ; .)
+    comentarioOne   reduce using rule 2 (LstI -> LstI Inst ; .)
+    comentarioMult  reduce using rule 2 (LstI -> LstI Inst ; .)
+    id              reduce using rule 2 (LstI -> LstI Inst ; .)
+    escrever        reduce using rule 2 (LstI -> LstI Inst ; .)
+    $end            reduce using rule 2 (LstI -> LstI Inst ; .)
+    fim             reduce using rule 2 (LstI -> LstI Inst ; .)
+
+
+state 29
+
+    (9) Inst -> se Comp fazer . : S fim
+
+    :               shift and go to state 55
+
+
+state 30
+
+    (37) Comp -> Comp / . backlash Comp
+
+    backlash        shift and go to state 56
+
+
+state 31
+
+    (38) Comp -> Comp backlash . / Comp
+
+    /               shift and go to state 57
+
+
+state 32
+
+    (36) Comp -> CompF ! . = CompF
+
+    =               shift and go to state 58
+
+
+state 33
+
+    (39) Comp -> CompF = . = CompF
+
+    =               shift and go to state 59
+
+
+state 34
+
+    (40) Comp -> CompF > . CompF
+    (41) Comp -> CompF > . = CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    =               shift and go to state 61
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    CompF                          shift and go to state 60
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 35
+
+    (42) Comp -> CompF < . CompF
+    (43) Comp -> CompF < . = CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    =               shift and go to state 63
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    CompF                          shift and go to state 62
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 36
+
+    (44) CompF -> ( Comp . )
+    (37) Comp -> Comp . / backlash Comp
+    (38) Comp -> Comp . backlash / Comp
+
+    )               shift and go to state 64
+    /               shift and go to state 30
+    backlash        shift and go to state 31
+
+
+state 37
+
+    (30) F -> ( E . )
+    (24) E -> E . + T
+    (25) E -> E . - T
+    (47) CompF -> E .
+
+    )               shift and go to state 65
+    +               shift and go to state 38
+    -               shift and go to state 39
+    !               reduce using rule 47 (CompF -> E .)
+    =               reduce using rule 47 (CompF -> E .)
+    >               reduce using rule 47 (CompF -> E .)
+    <               reduce using rule 47 (CompF -> E .)
+
+
+state 38
+
+    (24) E -> E + . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    T                              shift and go to state 66
+    F                              shift and go to state 21
+
+state 39
+
+    (25) E -> E - . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    T                              shift and go to state 67
+    F                              shift and go to state 21
+
+state 40
+
+    (27) T -> T / . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    F                              shift and go to state 68
+
+state 41
+
+    (28) T -> T * . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    F                              shift and go to state 69
+
+state 42
+
+    (34) F -> id [ . numInt ]
+
+    numInt          shift and go to state 70
+
+
+state 43
+
+    (35) F -> aleatorio ( . numInt )
+
+    numInt          shift and go to state 71
+
+
+state 44
+
+    (10) V -> id = E .
+    (24) E -> E . + T
+    (25) E -> E . - T
+
+    ;               reduce using rule 10 (V -> id = E .)
+    +               shift and go to state 38
+    -               shift and go to state 39
+
+
+state 45
+
+    (11) V -> id = texto .
+
+    ;               reduce using rule 11 (V -> id = texto .)
+
+
+state 46
+
+    (12) V -> id = Lista .
+
+    ;               reduce using rule 12 (V -> id = Lista .)
+
+
+state 47
+
+    (13) V -> id = true .
+
+    ;               reduce using rule 13 (V -> id = true .)
+
+
+state 48
+
+    (14) V -> id = false .
+
+    ;               reduce using rule 14 (V -> id = false .)
+
+
+state 49
+
+    (23) V -> id = entrada . ( )
+
+    (               shift and go to state 72
+
+
+state 50
+
+    (30) F -> ( . E )
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    E                              shift and go to state 73
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 51
+
+    (15) Lista -> [ . ListIn ]
+    (16) Lista -> [ . ]
+    (17) ListIn -> . numInt , ListIn
+    (18) ListIn -> . numInt
+
+    ]               shift and go to state 75
+    numInt          shift and go to state 76
+
+    ListIn                         shift and go to state 74
+
+state 52
+
+    (22) V -> escrever ( Texto . )
+    (21) Texto -> Texto . < > Texto
+
+    )               shift and go to state 77
+    <               shift and go to state 78
+
+
+state 53
+
+    (19) Texto -> texto .
+
+    )               reduce using rule 19 (Texto -> texto .)
+    <               reduce using rule 19 (Texto -> texto .)
+
+
+state 54
+
+    (20) Texto -> E .
+    (24) E -> E . + T
+    (25) E -> E . - T
+
+    )               reduce using rule 20 (Texto -> E .)
+    <               reduce using rule 20 (Texto -> E .)
+    +               shift and go to state 38
+    -               shift and go to state 39
+
+
+state 55
+
+    (9) Inst -> se Comp fazer : . S fim
+    (1) S -> . LstI
+    (2) LstI -> . LstI Inst ;
+    (3) LstI -> . LstI InstC
+    (4) LstI -> . Inst ;
+    (5) LstI -> . InstC
+    (8) Inst -> . V
+    (9) Inst -> . se Comp fazer : S fim
+    (6) InstC -> . comentarioOne
+    (7) InstC -> . comentarioMult
+    (10) V -> . id = E
+    (11) V -> . id = texto
+    (12) V -> . id = Lista
+    (13) V -> . id = true
+    (14) V -> . id = false
+    (22) V -> . escrever ( Texto )
+    (23) V -> . id = entrada ( )
+
+    se              shift and go to state 6
+    comentarioOne   shift and go to state 7
+    comentarioMult  shift and go to state 8
+    id              shift and go to state 9
+    escrever        shift and go to state 10
+
+    S                              shift and go to state 79
+    LstI                           shift and go to state 2
+    Inst                           shift and go to state 3
+    InstC                          shift and go to state 4
+    V                              shift and go to state 5
+
+state 56
+
+    (37) Comp -> Comp / backlash . Comp
+    (36) Comp -> . CompF ! = CompF
+    (37) Comp -> . Comp / backlash Comp
+    (38) Comp -> . Comp backlash / Comp
+    (39) Comp -> . CompF = = CompF
+    (40) Comp -> . CompF > CompF
+    (41) Comp -> . CompF > = CompF
+    (42) Comp -> . CompF < CompF
+    (43) Comp -> . CompF < = CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    Comp                           shift and go to state 80
+    CompF                          shift and go to state 15
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 57
+
+    (38) Comp -> Comp backlash / . Comp
+    (36) Comp -> . CompF ! = CompF
+    (37) Comp -> . Comp / backlash Comp
+    (38) Comp -> . Comp backlash / Comp
+    (39) Comp -> . CompF = = CompF
+    (40) Comp -> . CompF > CompF
+    (41) Comp -> . CompF > = CompF
+    (42) Comp -> . CompF < CompF
+    (43) Comp -> . CompF < = CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    Comp                           shift and go to state 81
+    CompF                          shift and go to state 15
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 58
+
+    (36) Comp -> CompF ! = . CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    CompF                          shift and go to state 82
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 59
+
+    (39) Comp -> CompF = = . CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    CompF                          shift and go to state 83
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 60
+
+    (40) Comp -> CompF > CompF .
+
+    fazer           reduce using rule 40 (Comp -> CompF > CompF .)
+    /               reduce using rule 40 (Comp -> CompF > CompF .)
+    backlash        reduce using rule 40 (Comp -> CompF > CompF .)
+    )               reduce using rule 40 (Comp -> CompF > CompF .)
+
+
+state 61
+
+    (41) Comp -> CompF > = . CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    CompF                          shift and go to state 84
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 62
+
+    (42) Comp -> CompF < CompF .
+
+    fazer           reduce using rule 42 (Comp -> CompF < CompF .)
+    /               reduce using rule 42 (Comp -> CompF < CompF .)
+    backlash        reduce using rule 42 (Comp -> CompF < CompF .)
+    )               reduce using rule 42 (Comp -> CompF < CompF .)
+
+
+state 63
+
+    (43) Comp -> CompF < = . CompF
+    (44) CompF -> . ( Comp )
+    (45) CompF -> . true
+    (46) CompF -> . false
+    (47) CompF -> . E
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    (               shift and go to state 16
+    true            shift and go to state 17
+    false           shift and go to state 18
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    CompF                          shift and go to state 85
+    E                              shift and go to state 19
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 64
+
+    (44) CompF -> ( Comp ) .
+
+    !               reduce using rule 44 (CompF -> ( Comp ) .)
+    =               reduce using rule 44 (CompF -> ( Comp ) .)
+    >               reduce using rule 44 (CompF -> ( Comp ) .)
+    <               reduce using rule 44 (CompF -> ( Comp ) .)
+    fazer           reduce using rule 44 (CompF -> ( Comp ) .)
+    /               reduce using rule 44 (CompF -> ( Comp ) .)
+    backlash        reduce using rule 44 (CompF -> ( Comp ) .)
+    )               reduce using rule 44 (CompF -> ( Comp ) .)
+
+
+state 65
+
+    (30) F -> ( E ) .
+
+    /               reduce using rule 30 (F -> ( E ) .)
+    *               reduce using rule 30 (F -> ( E ) .)
+    +               reduce using rule 30 (F -> ( E ) .)
+    -               reduce using rule 30 (F -> ( E ) .)
+    !               reduce using rule 30 (F -> ( E ) .)
+    =               reduce using rule 30 (F -> ( E ) .)
+    >               reduce using rule 30 (F -> ( E ) .)
+    <               reduce using rule 30 (F -> ( E ) .)
+    )               reduce using rule 30 (F -> ( E ) .)
+    ;               reduce using rule 30 (F -> ( E ) .)
+    fazer           reduce using rule 30 (F -> ( E ) .)
+    backlash        reduce using rule 30 (F -> ( E ) .)
+
+
+state 66
+
+    (24) E -> E + T .
+    (27) T -> T . / F
+    (28) T -> T . * F
+
+    +               reduce using rule 24 (E -> E + T .)
+    -               reduce using rule 24 (E -> E + T .)
+    !               reduce using rule 24 (E -> E + T .)
+    =               reduce using rule 24 (E -> E + T .)
+    >               reduce using rule 24 (E -> E + T .)
+    <               reduce using rule 24 (E -> E + T .)
+    )               reduce using rule 24 (E -> E + T .)
+    ;               reduce using rule 24 (E -> E + T .)
+    fazer           reduce using rule 24 (E -> E + T .)
+    backlash        reduce using rule 24 (E -> E + T .)
+    /               shift and go to state 40
+    *               shift and go to state 41
+
+  ! /               [ reduce using rule 24 (E -> E + T .) ]
+
+
+state 67
+
+    (25) E -> E - T .
+    (27) T -> T . / F
+    (28) T -> T . * F
+
+    +               reduce using rule 25 (E -> E - T .)
+    -               reduce using rule 25 (E -> E - T .)
+    !               reduce using rule 25 (E -> E - T .)
+    =               reduce using rule 25 (E -> E - T .)
+    >               reduce using rule 25 (E -> E - T .)
+    <               reduce using rule 25 (E -> E - T .)
+    )               reduce using rule 25 (E -> E - T .)
+    ;               reduce using rule 25 (E -> E - T .)
+    fazer           reduce using rule 25 (E -> E - T .)
+    backlash        reduce using rule 25 (E -> E - T .)
+    /               shift and go to state 40
+    *               shift and go to state 41
+
+  ! /               [ reduce using rule 25 (E -> E - T .) ]
+
+
+state 68
+
+    (27) T -> T / F .
+
+    /               reduce using rule 27 (T -> T / F .)
+    *               reduce using rule 27 (T -> T / F .)
+    +               reduce using rule 27 (T -> T / F .)
+    -               reduce using rule 27 (T -> T / F .)
+    !               reduce using rule 27 (T -> T / F .)
+    =               reduce using rule 27 (T -> T / F .)
+    >               reduce using rule 27 (T -> T / F .)
+    <               reduce using rule 27 (T -> T / F .)
+    )               reduce using rule 27 (T -> T / F .)
+    ;               reduce using rule 27 (T -> T / F .)
+    fazer           reduce using rule 27 (T -> T / F .)
+    backlash        reduce using rule 27 (T -> T / F .)
+
+
+state 69
+
+    (28) T -> T * F .
+
+    /               reduce using rule 28 (T -> T * F .)
+    *               reduce using rule 28 (T -> T * F .)
+    +               reduce using rule 28 (T -> T * F .)
+    -               reduce using rule 28 (T -> T * F .)
+    !               reduce using rule 28 (T -> T * F .)
+    =               reduce using rule 28 (T -> T * F .)
+    >               reduce using rule 28 (T -> T * F .)
+    <               reduce using rule 28 (T -> T * F .)
+    )               reduce using rule 28 (T -> T * F .)
+    ;               reduce using rule 28 (T -> T * F .)
+    fazer           reduce using rule 28 (T -> T * F .)
+    backlash        reduce using rule 28 (T -> T * F .)
+
+
+state 70
+
+    (34) F -> id [ numInt . ]
+
+    ]               shift and go to state 86
+
+
+state 71
+
+    (35) F -> aleatorio ( numInt . )
+
+    )               shift and go to state 87
+
+
+state 72
+
+    (23) V -> id = entrada ( . )
+
+    )               shift and go to state 88
+
+
+state 73
+
+    (30) F -> ( E . )
+    (24) E -> E . + T
+    (25) E -> E . - T
+
+    )               shift and go to state 65
+    +               shift and go to state 38
+    -               shift and go to state 39
+
+
+state 74
+
+    (15) Lista -> [ ListIn . ]
+
+    ]               shift and go to state 89
+
+
+state 75
+
+    (16) Lista -> [ ] .
+
+    ;               reduce using rule 16 (Lista -> [ ] .)
+
+
+state 76
+
+    (17) ListIn -> numInt . , ListIn
+    (18) ListIn -> numInt .
+
+    ,               shift and go to state 90
+    ]               reduce using rule 18 (ListIn -> numInt .)
+
+
+state 77
+
+    (22) V -> escrever ( Texto ) .
+
+    ;               reduce using rule 22 (V -> escrever ( Texto ) .)
+
+
+state 78
+
+    (21) Texto -> Texto < . > Texto
+
+    >               shift and go to state 91
+
+
+state 79
+
+    (9) Inst -> se Comp fazer : S . fim
+
+    fim             shift and go to state 92
+
+
+state 80
+
+    (37) Comp -> Comp / backlash Comp .
+    (37) Comp -> Comp . / backlash Comp
+    (38) Comp -> Comp . backlash / Comp
+
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for backlash resolved as shift
+    fazer           reduce using rule 37 (Comp -> Comp / backlash Comp .)
+    )               reduce using rule 37 (Comp -> Comp / backlash Comp .)
+    /               shift and go to state 30
+    backlash        shift and go to state 31
+
+  ! /               [ reduce using rule 37 (Comp -> Comp / backlash Comp .) ]
+  ! backlash        [ reduce using rule 37 (Comp -> Comp / backlash Comp .) ]
+
+
+state 81
+
+    (38) Comp -> Comp backlash / Comp .
+    (37) Comp -> Comp . / backlash Comp
+    (38) Comp -> Comp . backlash / Comp
+
+    fazer           reduce using rule 38 (Comp -> Comp backlash / Comp .)
+    /               reduce using rule 38 (Comp -> Comp backlash / Comp .)
+    backlash        reduce using rule 38 (Comp -> Comp backlash / Comp .)
+    )               reduce using rule 38 (Comp -> Comp backlash / Comp .)
+
+  ! /               [ shift and go to state 30 ]
+  ! backlash        [ shift and go to state 31 ]
+
+
+state 82
+
+    (36) Comp -> CompF ! = CompF .
+
+    fazer           reduce using rule 36 (Comp -> CompF ! = CompF .)
+    /               reduce using rule 36 (Comp -> CompF ! = CompF .)
+    backlash        reduce using rule 36 (Comp -> CompF ! = CompF .)
+    )               reduce using rule 36 (Comp -> CompF ! = CompF .)
+
+
+state 83
+
+    (39) Comp -> CompF = = CompF .
+
+    fazer           reduce using rule 39 (Comp -> CompF = = CompF .)
+    /               reduce using rule 39 (Comp -> CompF = = CompF .)
+    backlash        reduce using rule 39 (Comp -> CompF = = CompF .)
+    )               reduce using rule 39 (Comp -> CompF = = CompF .)
+
+
+state 84
+
+    (41) Comp -> CompF > = CompF .
+
+    fazer           reduce using rule 41 (Comp -> CompF > = CompF .)
+    /               reduce using rule 41 (Comp -> CompF > = CompF .)
+    backlash        reduce using rule 41 (Comp -> CompF > = CompF .)
+    )               reduce using rule 41 (Comp -> CompF > = CompF .)
+
+
+state 85
+
+    (43) Comp -> CompF < = CompF .
+
+    fazer           reduce using rule 43 (Comp -> CompF < = CompF .)
+    /               reduce using rule 43 (Comp -> CompF < = CompF .)
+    backlash        reduce using rule 43 (Comp -> CompF < = CompF .)
+    )               reduce using rule 43 (Comp -> CompF < = CompF .)
+
+
+state 86
+
+    (34) F -> id [ numInt ] .
+
+    /               reduce using rule 34 (F -> id [ numInt ] .)
+    *               reduce using rule 34 (F -> id [ numInt ] .)
+    +               reduce using rule 34 (F -> id [ numInt ] .)
+    -               reduce using rule 34 (F -> id [ numInt ] .)
+    !               reduce using rule 34 (F -> id [ numInt ] .)
+    =               reduce using rule 34 (F -> id [ numInt ] .)
+    >               reduce using rule 34 (F -> id [ numInt ] .)
+    <               reduce using rule 34 (F -> id [ numInt ] .)
+    )               reduce using rule 34 (F -> id [ numInt ] .)
+    ;               reduce using rule 34 (F -> id [ numInt ] .)
+    fazer           reduce using rule 34 (F -> id [ numInt ] .)
+    backlash        reduce using rule 34 (F -> id [ numInt ] .)
+
+
+state 87
+
+    (35) F -> aleatorio ( numInt ) .
+
+    /               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    *               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    +               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    -               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    !               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    =               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    >               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    <               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    )               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    ;               reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    fazer           reduce using rule 35 (F -> aleatorio ( numInt ) .)
+    backlash        reduce using rule 35 (F -> aleatorio ( numInt ) .)
+
+
+state 88
+
+    (23) V -> id = entrada ( ) .
+
+    ;               reduce using rule 23 (V -> id = entrada ( ) .)
+
+
+state 89
+
+    (15) Lista -> [ ListIn ] .
+
+    ;               reduce using rule 15 (Lista -> [ ListIn ] .)
+
+
+state 90
+
+    (17) ListIn -> numInt , . ListIn
+    (17) ListIn -> . numInt , ListIn
+    (18) ListIn -> . numInt
+
+    numInt          shift and go to state 76
+
+    ListIn                         shift and go to state 93
+
+state 91
+
+    (21) Texto -> Texto < > . Texto
+    (19) Texto -> . texto
+    (20) Texto -> . E
+    (21) Texto -> . Texto < > Texto
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    texto           shift and go to state 53
+    (               shift and go to state 50
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    Texto                          shift and go to state 94
+    E                              shift and go to state 54
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 92
+
+    (9) Inst -> se Comp fazer : S fim .
+
+    ;               reduce using rule 9 (Inst -> se Comp fazer : S fim .)
+
+
+state 93
+
+    (17) ListIn -> numInt , ListIn .
+
+    ]               reduce using rule 17 (ListIn -> numInt , ListIn .)
+
+
+state 94
+
+    (21) Texto -> Texto < > Texto .
+    (21) Texto -> Texto . < > Texto
+
+  ! shift/reduce conflict for < resolved as shift
+    )               reduce using rule 21 (Texto -> Texto < > Texto .)
+    <               shift and go to state 78
+
+  ! <               [ reduce using rule 21 (Texto -> Texto < > Texto .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for / in state 20 resolved as shift
+WARNING: shift/reduce conflict for / in state 80 resolved as shift
+WARNING: shift/reduce conflict for backlash in state 80 resolved as shift
+WARNING: shift/reduce conflict for < in state 94 resolved as shift

@@ -167,8 +167,8 @@ resultado = Eval.evaluate(res)
 
 print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
 
-#SE /\ \/
- 
+# SE /\ \/
+
 res = lg.parse("""a = 1;
                b = 2;
                c = True;
@@ -181,6 +181,15 @@ res = lg.parse("""a = 1;
                FIM;
                SE a < b /\ c != d FAZER:
                ESCREVER("ola1");
+               FIM;
+               SE 3 < 2 /\ (1 != 2 \/ 1 == 2)  FAZER:
+               ESCREVER("adeus1");
+               FIM;
+               SE (1 < 2 /\ 1 != 2) \/ 1 == 2 FAZER:
+               ESCREVER("adeus2");
+               FIM;
+               SE 3 < 2 \/ (2 != 2 \/ 3 == 2) FAZER:
+               ESCREVER("adeus3");
                FIM;
                """)
 

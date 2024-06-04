@@ -52,7 +52,7 @@ Rule 40    Comp -> CompF > CompF
 Rule 41    Comp -> CompF > = CompF
 Rule 42    Comp -> CompF < CompF
 Rule 43    Comp -> CompF < = CompF
-Rule 44    CompF -> ( Comp )
+Rule 44    Comp -> ( Comp )
 Rule 45    CompF -> true
 Rule 46    CompF -> false
 Rule 47    CompF -> E
@@ -218,7 +218,7 @@ state 6
     (41) Comp -> . CompF > = CompF
     (42) Comp -> . CompF < CompF
     (43) Comp -> . CompF < = CompF
-    (44) CompF -> . ( Comp )
+    (44) Comp -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -355,7 +355,7 @@ state 15
 
 state 16
 
-    (44) CompF -> ( . Comp )
+    (44) Comp -> ( . Comp )
     (30) F -> ( . E )
     (36) Comp -> . CompF ! = CompF
     (37) Comp -> . Comp and Comp
@@ -365,10 +365,10 @@ state 16
     (41) Comp -> . CompF > = CompF
     (42) Comp -> . CompF < CompF
     (43) Comp -> . CompF < = CompF
+    (44) Comp -> . ( Comp )
     (24) E -> . E + T
     (25) E -> . E - T
     (26) E -> . T
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -649,7 +649,7 @@ state 30
     (41) Comp -> . CompF > = CompF
     (42) Comp -> . CompF < CompF
     (43) Comp -> . CompF < = CompF
-    (44) CompF -> . ( Comp )
+    (44) Comp -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -691,7 +691,7 @@ state 31
     (41) Comp -> . CompF > = CompF
     (42) Comp -> . CompF < CompF
     (43) Comp -> . CompF < = CompF
-    (44) CompF -> . ( Comp )
+    (44) Comp -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -740,7 +740,6 @@ state 34
 
     (40) Comp -> CompF > . CompF
     (41) Comp -> CompF > . = CompF
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -758,9 +757,9 @@ state 34
     (35) F -> . aleatorio ( numInt )
 
     =               shift and go to state 61
-    (               shift and go to state 16
     true            shift and go to state 17
     false           shift and go to state 18
+    (               shift and go to state 50
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -775,7 +774,6 @@ state 35
 
     (42) Comp -> CompF < . CompF
     (43) Comp -> CompF < . = CompF
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -793,9 +791,9 @@ state 35
     (35) F -> . aleatorio ( numInt )
 
     =               shift and go to state 63
-    (               shift and go to state 16
     true            shift and go to state 17
     false           shift and go to state 18
+    (               shift and go to state 50
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -808,7 +806,7 @@ state 35
 
 state 36
 
-    (44) CompF -> ( Comp . )
+    (44) Comp -> ( Comp . )
     (37) Comp -> Comp . and Comp
     (38) Comp -> Comp . or Comp
 
@@ -1109,7 +1107,6 @@ state 57
 state 58
 
     (36) Comp -> CompF ! = . CompF
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -1126,9 +1123,9 @@ state 58
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 16
     true            shift and go to state 17
     false           shift and go to state 18
+    (               shift and go to state 50
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1142,7 +1139,6 @@ state 58
 state 59
 
     (39) Comp -> CompF = = . CompF
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -1159,9 +1155,9 @@ state 59
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 16
     true            shift and go to state 17
     false           shift and go to state 18
+    (               shift and go to state 50
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1185,7 +1181,6 @@ state 60
 state 61
 
     (41) Comp -> CompF > = . CompF
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -1202,9 +1197,9 @@ state 61
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 16
     true            shift and go to state 17
     false           shift and go to state 18
+    (               shift and go to state 50
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1228,7 +1223,6 @@ state 62
 state 63
 
     (43) Comp -> CompF < = . CompF
-    (44) CompF -> . ( Comp )
     (45) CompF -> . true
     (46) CompF -> . false
     (47) CompF -> . E
@@ -1245,9 +1239,9 @@ state 63
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 16
     true            shift and go to state 17
     false           shift and go to state 18
+    (               shift and go to state 50
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1260,16 +1254,12 @@ state 63
 
 state 64
 
-    (44) CompF -> ( Comp ) .
+    (44) Comp -> ( Comp ) .
 
-    !               reduce using rule 44 (CompF -> ( Comp ) .)
-    =               reduce using rule 44 (CompF -> ( Comp ) .)
-    >               reduce using rule 44 (CompF -> ( Comp ) .)
-    <               reduce using rule 44 (CompF -> ( Comp ) .)
-    fazer           reduce using rule 44 (CompF -> ( Comp ) .)
-    and             reduce using rule 44 (CompF -> ( Comp ) .)
-    or              reduce using rule 44 (CompF -> ( Comp ) .)
-    )               reduce using rule 44 (CompF -> ( Comp ) .)
+    fazer           reduce using rule 44 (Comp -> ( Comp ) .)
+    and             reduce using rule 44 (Comp -> ( Comp ) .)
+    or              reduce using rule 44 (Comp -> ( Comp ) .)
+    )               reduce using rule 44 (Comp -> ( Comp ) .)
 
 
 state 65

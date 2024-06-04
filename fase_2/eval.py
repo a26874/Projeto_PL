@@ -56,7 +56,7 @@ class Eval:
         formatted_str = ''.join(map(str, args))
         formatted_str = Eval.replace_placeholders(formatted_str)
         print(formatted_str)
-        
+
     def replace_placeholders(s):
         start = 0
         while True:
@@ -122,29 +122,28 @@ class Eval:
 
     @staticmethod
     def _eval_operator(ast):
-        if Eval.se:
-            if 'op' in ast:
-                op = ast["op"]
+        if 'op' in ast:
+            op = ast["op"]
+            if Eval.se or op in ['AND','OR','HIGHER','HIGHEREQ','LOWEREQ','LOWER','EQUALITY','DIFF']:
                 args = [Eval.evaluate(a) for a in ast['args']]
                 if op in Eval.operators:
                     func = Eval.operators[op]
                     return func(args)
                 else:
                     raise Exception(f"Unknown operator {op}")
+            else:
+                Eval.se = True
+                return 'not exec'
 
-            if 'var' in ast:
-                varid = ast["var"]
-                if 'index' in ast:
-                    index = ast["index"]
-                    if varid in Eval.symbols:
-                        return Eval.symbols[varid][index]
+        if 'var' in ast:
+            varid = ast["var"]
+            if 'index' in ast:
+                index = ast["index"]
                 if varid in Eval.symbols:
-                    return Eval.symbols[varid]
-                raise Exception(f"error: local variable '{varid}' referenced before assignment")
-        else:
-            Eval.se = True
-            return 'not exec'
-        #
+                    return Eval.symbols[varid][index]
+            if varid in Eval.symbols:
+                return Eval.symbols[varid]
+            raise Exception(f"error: local variable '{varid}' referenced before assignment")
 
         raise Exception('Undefined AST')
 

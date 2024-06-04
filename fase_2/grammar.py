@@ -47,14 +47,13 @@ class Grammar:
                   | comentarioMult"""
         p[0] = dict(op='seq', args=[p[1]])
 
-    def p_Inst(self,p):
+    def p_Inst(self, p):
         """ Inst : V """
         p[0] = {'op': 'seq', "args": [p[1]]}
 
     def p_inst_se(self, p):
         """ Inst : se Comp fazer ':' S fim"""
-        p[0] = dict(op= 'SE', args= [ p[2], p[5] ])
-
+        p[0] = dict(op='SE', args=[p[2], p[5]])
 
     # def p_inst_func2(self,p):
     #     """ Func : funcao id '(' ')' ':' LstI  fim """
@@ -74,10 +73,10 @@ class Grammar:
     # def p_lstFunc3(self,p):
     #     """ LstFunc : F ',' LstFunc """
 
-    #def p_atribMap(self, p):
+    # def p_atribMap(self, p):
     #    """ V : id '=' map '(' id ',' Lista ')'"""
 
-    #def p_atribFold(self, p):
+    # def p_atribFold(self, p):
     #    """ V : id '=' fold '(' id ',' Lista ',' numInt ')' """
 
     def p_atribArith(self, p):
@@ -104,21 +103,22 @@ class Grammar:
         """ V : id '=' false """
         p[0] = {'op': 'atr',
                 'args': [p[1], p[3]]}
+
     # Lista
 
     def p_lista(self, p):
         """ Lista : '[' ListIn ']' """
         p[0] = p[2]
-        
+
     def p_listaVazia(self, p):
         """ Lista : '[' ']' """
         p[0] = []
-        
+
     def p_list1(self, p):
         """ ListIn : numInt ',' ListIn"""
         p[0] = []
         p[0].append(p[1])
-        if isinstance(p[3],list):
+        if isinstance(p[3], list):
             for num in p[3]:
                 p[0].append(num)
         else:
@@ -224,48 +224,48 @@ class Grammar:
 
     # COMPARISON
     def p_comp_diff(self, p):
-            """ Comp : CompF '!' '=' CompF """
-            p[0] = dict(op='DIFF', args=[p[1], p[4]])
+        """ Comp : CompF '!' '=' CompF """
+        p[0] = dict(op='DIFF', args=[p[1], p[4]])
 
     def p_comp_and(self, p):
-            """ Comp : Comp and Comp """
-            p[0] = dict(op='AND', args=[p[1], p[3]])
+        """ Comp : Comp and Comp """
+        p[0] = dict(op='AND', args=[p[1], p[3]])
 
     def p_comp_or(self, p):
-            """ Comp : Comp  or Comp """
-            p[0] = dict(op='OR', args=[p[1], p[3]])
+        """ Comp : Comp  or Comp """
+        p[0] = dict(op='OR', args=[p[1], p[3]])
 
     def p_comp_equality(self, p):
-            """ Comp : CompF '=' '=' CompF """
-            p[0] = dict(op='EQUALITY', args=[p[1], p[4]])
+        """ Comp : CompF '=' '=' CompF """
+        p[0] = dict(op='EQUALITY', args=[p[1], p[4]])
 
     def p_comp_higher(self, p):
-            """ Comp : CompF '>' CompF """
-            p[0] = dict(op='HIGHER', args=[p[1], p[3]])
+        """ Comp : CompF '>' CompF """
+        p[0] = dict(op='HIGHER', args=[p[1], p[3]])
 
     def p_comp_highereq(self, p):
-            """ Comp : CompF '>' '=' CompF """
-            p[0] = dict(op='HIGHEREQ', args=[p[1], p[4]])
+        """ Comp : CompF '>' '=' CompF """
+        p[0] = dict(op='HIGHEREQ', args=[p[1], p[4]])
 
     def p_comp_lower(self, p):
-            """ Comp : CompF '<' CompF """
-            p[0] = dict(op='LOWER', args=[p[1], p[3]])
+        """ Comp : CompF '<' CompF """
+        p[0] = dict(op='LOWER', args=[p[1], p[3]])
 
     def p_comp_lowereq(self, p):
-            """ Comp : CompF '<' '=' CompF """
-            p[0] = dict(op='LOWEREQ', args=[p[1], p[4]])
+        """ Comp : CompF '<' '=' CompF """
+        p[0] = dict(op='LOWEREQ', args=[p[1], p[4]])
 
     def p_comp_factor(self, p):
-            """ CompF : '(' Comp ')' """
-            p[0] = p[1]
+        """ Comp : '(' Comp ')' """
+        p[0] = p[2]
 
     def p_comp_valor1(self, p):
-            """ CompF : true"""
-            p[0] = p[1]
+        """ CompF : true"""
+        p[0] = p[1]
 
     def p_comp_valor2(self, p):
-            """ CompF : false"""
-            p[0] = p[1]
+        """ CompF : false"""
+        p[0] = p[1]
 
     def p_comp_valor3(self, p):
         """  CompF : E """

@@ -1,4 +1,3 @@
-# eval
 import random
 
 

@@ -1,9 +1,8 @@
-
 import ply.lex as plex
 
 class Lexer:
     
-    tokens= ("numInt","numF","id","funcao","fim","aleatorio","entrada", "map", "fold","escrever","texto","comentarioOne","comentarioMult","se","fazer","true","false",'backlash')
+    tokens= ("numInt","numF","id","funcao","fim","aleatorio","entrada", "map", "fold","escrever","texto","comentarioOne","comentarioMult","se","fazer","true","false","and","or")
     literals = ['*', '+', '(', ')','-','/',',',':',';','=','<','>','#','[',']','!','\\']
     t_ignore = " \n"
         
@@ -19,11 +18,8 @@ class Lexer:
     t_fazer = r"FAZER"
     t_true = r"True"
     t_false = r"False"
-
-    def t_backlash(self, t):
-        r'\\'
-        return t
-
+    t_and = r"/\\"
+    t_or = r"\\/"
     def t_map(self,t):
         r"map"
         return t

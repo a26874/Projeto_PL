@@ -228,12 +228,12 @@ class Grammar:
             p[0] = dict(op='DIFF', args=[p[1], p[4]])
 
     def p_comp_and(self, p):
-            """ Comp : Comp '/' backlash Comp """
-            p[0] = dict(op='AND', args=[p[1], p[4]])
+            """ Comp : Comp and Comp """
+            p[0] = dict(op='AND', args=[p[1], p[3]])
 
     def p_comp_or(self, p):
-            """ Comp : Comp backlash '/' Comp """
-            p[0] = dict(op='OR', args=[p[1], p[4]])
+            """ Comp : Comp  or Comp """
+            p[0] = dict(op='OR', args=[p[1], p[3]])
 
     def p_comp_equality(self, p):
             """ Comp : CompF '=' '=' CompF """

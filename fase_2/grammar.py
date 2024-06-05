@@ -161,7 +161,7 @@ class Grammar:
     # input
 
     def p_ent(self, p):
-        """ Inst  : id '=' entrada '(' ')'  """
+        """ V : id '=' entrada '(' ')'  """
         p[0] = {'op': 'atr',
                 'args': [p[1], "input"]}
 

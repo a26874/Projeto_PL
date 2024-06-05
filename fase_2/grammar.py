@@ -222,7 +222,7 @@ class Grammar:
         p[0] = {'op': 'al',
                 'args': [p[3]]}
 
-    # COMPARISON
+    # COMPARAÇÃO
     def p_comp_diff(self, p):
         """ Comp : CompF '!' '=' CompF """
         p[0] = dict(op='DIFF', args=[p[1], p[4]])
@@ -235,7 +235,7 @@ class Grammar:
         """ Comp : Comp  or Comp """
         p[0] = dict(op='OR', args=[p[1], p[3]])
 
-    def p_comp_equality(self, p):
+    def p_comp_equal(self, p):
         """ Comp : CompF '=' '=' CompF """
         p[0] = dict(op='EQUALITY', args=[p[1], p[4]])
 

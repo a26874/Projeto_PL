@@ -14,9 +14,9 @@ Rule 2     LstI -> LstI Inst ;
 Rule 3     LstI -> LstI InstC
 Rule 4     LstI -> Inst ;
 Rule 5     LstI -> InstC
-Rule 6     InstC -> comentarioOne
-Rule 7     InstC -> comentarioMult
-Rule 8     Inst -> V
+Rule 6     Inst -> V
+Rule 7     InstC -> comentarioOne
+Rule 8     InstC -> comentarioMult
 Rule 9     Inst -> se Comp fazer : S fim
 Rule 10    V -> id = E
 Rule 11    V -> id = texto
@@ -30,8 +30,8 @@ Rule 18    ListIn -> numInt
 Rule 19    Texto -> texto
 Rule 20    Texto -> E
 Rule 21    Texto -> Texto < > Texto
-Rule 22    V -> escrever ( Texto )
-Rule 23    V -> id = entrada ( )
+Rule 22    Inst -> escrever ( Texto )
+Rule 23    Inst -> id = entrada ( )
 Rule 24    E -> E + T
 Rule 25    E -> E - T
 Rule 26    E -> T
@@ -76,8 +76,8 @@ Terminals, with rules where they appear
 ]                    : 15 16 34
 aleatorio            : 35
 and                  : 37
-comentarioMult       : 7
-comentarioOne        : 6
+comentarioMult       : 8
+comentarioOne        : 7
 entrada              : 23
 error                : 
 escrever             : 22
@@ -109,7 +109,7 @@ LstI                 : 1 2 3
 S                    : 9 0
 T                    : 24 25 26 27 28
 Texto                : 21 21 22
-V                    : 8
+V                    : 6
 
 Parsing method: LALR
 
@@ -121,23 +121,23 @@ state 0
     (3) LstI -> . LstI InstC
     (4) LstI -> . Inst ;
     (5) LstI -> . InstC
-    (8) Inst -> . V
+    (6) Inst -> . V
     (9) Inst -> . se Comp fazer : S fim
-    (6) InstC -> . comentarioOne
-    (7) InstC -> . comentarioMult
+    (22) Inst -> . escrever ( Texto )
+    (23) Inst -> . id = entrada ( )
+    (7) InstC -> . comentarioOne
+    (8) InstC -> . comentarioMult
     (10) V -> . id = E
     (11) V -> . id = texto
     (12) V -> . id = Lista
     (13) V -> . id = true
     (14) V -> . id = false
-    (22) V -> . escrever ( Texto )
-    (23) V -> . id = entrada ( )
 
     se              shift and go to state 6
-    comentarioOne   shift and go to state 7
-    comentarioMult  shift and go to state 8
-    id              shift and go to state 9
-    escrever        shift and go to state 10
+    escrever        shift and go to state 7
+    id              shift and go to state 8
+    comentarioOne   shift and go to state 9
+    comentarioMult  shift and go to state 10
 
     S                              shift and go to state 1
     LstI                           shift and go to state 2
@@ -156,25 +156,25 @@ state 2
     (1) S -> LstI .
     (2) LstI -> LstI . Inst ;
     (3) LstI -> LstI . InstC
-    (8) Inst -> . V
+    (6) Inst -> . V
     (9) Inst -> . se Comp fazer : S fim
-    (6) InstC -> . comentarioOne
-    (7) InstC -> . comentarioMult
+    (22) Inst -> . escrever ( Texto )
+    (23) Inst -> . id = entrada ( )
+    (7) InstC -> . comentarioOne
+    (8) InstC -> . comentarioMult
     (10) V -> . id = E
     (11) V -> . id = texto
     (12) V -> . id = Lista
     (13) V -> . id = true
     (14) V -> . id = false
-    (22) V -> . escrever ( Texto )
-    (23) V -> . id = entrada ( )
 
     $end            reduce using rule 1 (S -> LstI .)
     fim             reduce using rule 1 (S -> LstI .)
     se              shift and go to state 6
-    comentarioOne   shift and go to state 7
-    comentarioMult  shift and go to state 8
-    id              shift and go to state 9
-    escrever        shift and go to state 10
+    escrever        shift and go to state 7
+    id              shift and go to state 8
+    comentarioOne   shift and go to state 9
+    comentarioMult  shift and go to state 10
 
     Inst                           shift and go to state 11
     InstC                          shift and go to state 12
@@ -192,19 +192,19 @@ state 4
     (5) LstI -> InstC .
 
     se              reduce using rule 5 (LstI -> InstC .)
+    escrever        reduce using rule 5 (LstI -> InstC .)
+    id              reduce using rule 5 (LstI -> InstC .)
     comentarioOne   reduce using rule 5 (LstI -> InstC .)
     comentarioMult  reduce using rule 5 (LstI -> InstC .)
-    id              reduce using rule 5 (LstI -> InstC .)
-    escrever        reduce using rule 5 (LstI -> InstC .)
     $end            reduce using rule 5 (LstI -> InstC .)
     fim             reduce using rule 5 (LstI -> InstC .)
 
 
 state 5
 
-    (8) Inst -> V .
+    (6) Inst -> V .
 
-    ;               reduce using rule 8 (Inst -> V .)
+    ;               reduce using rule 6 (Inst -> V .)
 
 
 state 6
@@ -251,47 +251,47 @@ state 6
 
 state 7
 
-    (6) InstC -> comentarioOne .
+    (22) Inst -> escrever . ( Texto )
 
-    se              reduce using rule 6 (InstC -> comentarioOne .)
-    comentarioOne   reduce using rule 6 (InstC -> comentarioOne .)
-    comentarioMult  reduce using rule 6 (InstC -> comentarioOne .)
-    id              reduce using rule 6 (InstC -> comentarioOne .)
-    escrever        reduce using rule 6 (InstC -> comentarioOne .)
-    $end            reduce using rule 6 (InstC -> comentarioOne .)
-    fim             reduce using rule 6 (InstC -> comentarioOne .)
+    (               shift and go to state 26
 
 
 state 8
 
-    (7) InstC -> comentarioMult .
-
-    se              reduce using rule 7 (InstC -> comentarioMult .)
-    comentarioOne   reduce using rule 7 (InstC -> comentarioMult .)
-    comentarioMult  reduce using rule 7 (InstC -> comentarioMult .)
-    id              reduce using rule 7 (InstC -> comentarioMult .)
-    escrever        reduce using rule 7 (InstC -> comentarioMult .)
-    $end            reduce using rule 7 (InstC -> comentarioMult .)
-    fim             reduce using rule 7 (InstC -> comentarioMult .)
-
-
-state 9
-
+    (23) Inst -> id . = entrada ( )
     (10) V -> id . = E
     (11) V -> id . = texto
     (12) V -> id . = Lista
     (13) V -> id . = true
     (14) V -> id . = false
-    (23) V -> id . = entrada ( )
 
-    =               shift and go to state 26
+    =               shift and go to state 27
+
+
+state 9
+
+    (7) InstC -> comentarioOne .
+
+    se              reduce using rule 7 (InstC -> comentarioOne .)
+    escrever        reduce using rule 7 (InstC -> comentarioOne .)
+    id              reduce using rule 7 (InstC -> comentarioOne .)
+    comentarioOne   reduce using rule 7 (InstC -> comentarioOne .)
+    comentarioMult  reduce using rule 7 (InstC -> comentarioOne .)
+    $end            reduce using rule 7 (InstC -> comentarioOne .)
+    fim             reduce using rule 7 (InstC -> comentarioOne .)
 
 
 state 10
 
-    (22) V -> escrever . ( Texto )
+    (8) InstC -> comentarioMult .
 
-    (               shift and go to state 27
+    se              reduce using rule 8 (InstC -> comentarioMult .)
+    escrever        reduce using rule 8 (InstC -> comentarioMult .)
+    id              reduce using rule 8 (InstC -> comentarioMult .)
+    comentarioOne   reduce using rule 8 (InstC -> comentarioMult .)
+    comentarioMult  reduce using rule 8 (InstC -> comentarioMult .)
+    $end            reduce using rule 8 (InstC -> comentarioMult .)
+    fim             reduce using rule 8 (InstC -> comentarioMult .)
 
 
 state 11
@@ -306,10 +306,10 @@ state 12
     (3) LstI -> LstI InstC .
 
     se              reduce using rule 3 (LstI -> LstI InstC .)
+    escrever        reduce using rule 3 (LstI -> LstI InstC .)
+    id              reduce using rule 3 (LstI -> LstI InstC .)
     comentarioOne   reduce using rule 3 (LstI -> LstI InstC .)
     comentarioMult  reduce using rule 3 (LstI -> LstI InstC .)
-    id              reduce using rule 3 (LstI -> LstI InstC .)
-    escrever        reduce using rule 3 (LstI -> LstI InstC .)
     $end            reduce using rule 3 (LstI -> LstI InstC .)
     fim             reduce using rule 3 (LstI -> LstI InstC .)
 
@@ -319,10 +319,10 @@ state 13
     (4) LstI -> Inst ; .
 
     se              reduce using rule 4 (LstI -> Inst ; .)
+    escrever        reduce using rule 4 (LstI -> Inst ; .)
+    id              reduce using rule 4 (LstI -> Inst ; .)
     comentarioOne   reduce using rule 4 (LstI -> Inst ; .)
     comentarioMult  reduce using rule 4 (LstI -> Inst ; .)
-    id              reduce using rule 4 (LstI -> Inst ; .)
-    escrever        reduce using rule 4 (LstI -> Inst ; .)
     $end            reduce using rule 4 (LstI -> Inst ; .)
     fim             reduce using rule 4 (LstI -> Inst ; .)
 
@@ -550,46 +550,7 @@ state 25
 
 state 26
 
-    (10) V -> id = . E
-    (11) V -> id = . texto
-    (12) V -> id = . Lista
-    (13) V -> id = . true
-    (14) V -> id = . false
-    (23) V -> id = . entrada ( )
-    (24) E -> . E + T
-    (25) E -> . E - T
-    (26) E -> . T
-    (15) Lista -> . [ ListIn ]
-    (16) Lista -> . [ ]
-    (27) T -> . T / F
-    (28) T -> . T * F
-    (29) T -> . F
-    (30) F -> . ( E )
-    (31) F -> . numInt
-    (32) F -> . numF
-    (33) F -> . id
-    (34) F -> . id [ numInt ]
-    (35) F -> . aleatorio ( numInt )
-
-    texto           shift and go to state 45
-    true            shift and go to state 47
-    false           shift and go to state 48
-    entrada         shift and go to state 49
-    [               shift and go to state 51
-    (               shift and go to state 50
-    numInt          shift and go to state 22
-    numF            shift and go to state 23
-    id              shift and go to state 24
-    aleatorio       shift and go to state 25
-
-    E                              shift and go to state 44
-    Lista                          shift and go to state 46
-    T                              shift and go to state 20
-    F                              shift and go to state 21
-
-state 27
-
-    (22) V -> escrever ( . Texto )
+    (22) Inst -> escrever ( . Texto )
     (19) Texto -> . texto
     (20) Texto -> . E
     (21) Texto -> . Texto < > Texto
@@ -606,15 +567,54 @@ state 27
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    texto           shift and go to state 53
-    (               shift and go to state 50
+    texto           shift and go to state 46
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
     aleatorio       shift and go to state 25
 
-    Texto                          shift and go to state 52
-    E                              shift and go to state 54
+    Texto                          shift and go to state 45
+    E                              shift and go to state 47
+    T                              shift and go to state 20
+    F                              shift and go to state 21
+
+state 27
+
+    (23) Inst -> id = . entrada ( )
+    (10) V -> id = . E
+    (11) V -> id = . texto
+    (12) V -> id = . Lista
+    (13) V -> id = . true
+    (14) V -> id = . false
+    (24) E -> . E + T
+    (25) E -> . E - T
+    (26) E -> . T
+    (15) Lista -> . [ ListIn ]
+    (16) Lista -> . [ ]
+    (27) T -> . T / F
+    (28) T -> . T * F
+    (29) T -> . F
+    (30) F -> . ( E )
+    (31) F -> . numInt
+    (32) F -> . numF
+    (33) F -> . id
+    (34) F -> . id [ numInt ]
+    (35) F -> . aleatorio ( numInt )
+
+    entrada         shift and go to state 48
+    texto           shift and go to state 50
+    true            shift and go to state 52
+    false           shift and go to state 53
+    [               shift and go to state 54
+    (               shift and go to state 44
+    numInt          shift and go to state 22
+    numF            shift and go to state 23
+    id              shift and go to state 24
+    aleatorio       shift and go to state 25
+
+    E                              shift and go to state 49
+    Lista                          shift and go to state 51
     T                              shift and go to state 20
     F                              shift and go to state 21
 
@@ -623,10 +623,10 @@ state 28
     (2) LstI -> LstI Inst ; .
 
     se              reduce using rule 2 (LstI -> LstI Inst ; .)
+    escrever        reduce using rule 2 (LstI -> LstI Inst ; .)
+    id              reduce using rule 2 (LstI -> LstI Inst ; .)
     comentarioOne   reduce using rule 2 (LstI -> LstI Inst ; .)
     comentarioMult  reduce using rule 2 (LstI -> LstI Inst ; .)
-    id              reduce using rule 2 (LstI -> LstI Inst ; .)
-    escrever        reduce using rule 2 (LstI -> LstI Inst ; .)
     $end            reduce using rule 2 (LstI -> LstI Inst ; .)
     fim             reduce using rule 2 (LstI -> LstI Inst ; .)
 
@@ -759,7 +759,7 @@ state 34
     =               shift and go to state 61
     true            shift and go to state 17
     false           shift and go to state 18
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -793,7 +793,7 @@ state 35
     =               shift and go to state 63
     true            shift and go to state 17
     false           shift and go to state 18
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -844,7 +844,7 @@ state 38
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -866,7 +866,7 @@ state 39
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -885,7 +885,7 @@ state 40
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -903,7 +903,7 @@ state 41
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -927,52 +927,6 @@ state 43
 
 state 44
 
-    (10) V -> id = E .
-    (24) E -> E . + T
-    (25) E -> E . - T
-
-    ;               reduce using rule 10 (V -> id = E .)
-    +               shift and go to state 38
-    -               shift and go to state 39
-
-
-state 45
-
-    (11) V -> id = texto .
-
-    ;               reduce using rule 11 (V -> id = texto .)
-
-
-state 46
-
-    (12) V -> id = Lista .
-
-    ;               reduce using rule 12 (V -> id = Lista .)
-
-
-state 47
-
-    (13) V -> id = true .
-
-    ;               reduce using rule 13 (V -> id = true .)
-
-
-state 48
-
-    (14) V -> id = false .
-
-    ;               reduce using rule 14 (V -> id = false .)
-
-
-state 49
-
-    (23) V -> id = entrada . ( )
-
-    (               shift and go to state 72
-
-
-state 50
-
     (30) F -> ( . E )
     (24) E -> . E + T
     (25) E -> . E - T
@@ -987,38 +941,26 @@ state 50
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
     aleatorio       shift and go to state 25
 
-    E                              shift and go to state 73
+    E                              shift and go to state 72
     T                              shift and go to state 20
     F                              shift and go to state 21
 
-state 51
+state 45
 
-    (15) Lista -> [ . ListIn ]
-    (16) Lista -> [ . ]
-    (17) ListIn -> . numInt , ListIn
-    (18) ListIn -> . numInt
-
-    ]               shift and go to state 75
-    numInt          shift and go to state 76
-
-    ListIn                         shift and go to state 74
-
-state 52
-
-    (22) V -> escrever ( Texto . )
+    (22) Inst -> escrever ( Texto . )
     (21) Texto -> Texto . < > Texto
 
-    )               shift and go to state 77
-    <               shift and go to state 78
+    )               shift and go to state 73
+    <               shift and go to state 74
 
 
-state 53
+state 46
 
     (19) Texto -> texto .
 
@@ -1026,7 +968,7 @@ state 53
     <               reduce using rule 19 (Texto -> texto .)
 
 
-state 54
+state 47
 
     (20) Texto -> E .
     (24) E -> E . + T
@@ -1038,6 +980,64 @@ state 54
     -               shift and go to state 39
 
 
+state 48
+
+    (23) Inst -> id = entrada . ( )
+
+    (               shift and go to state 75
+
+
+state 49
+
+    (10) V -> id = E .
+    (24) E -> E . + T
+    (25) E -> E . - T
+
+    ;               reduce using rule 10 (V -> id = E .)
+    +               shift and go to state 38
+    -               shift and go to state 39
+
+
+state 50
+
+    (11) V -> id = texto .
+
+    ;               reduce using rule 11 (V -> id = texto .)
+
+
+state 51
+
+    (12) V -> id = Lista .
+
+    ;               reduce using rule 12 (V -> id = Lista .)
+
+
+state 52
+
+    (13) V -> id = true .
+
+    ;               reduce using rule 13 (V -> id = true .)
+
+
+state 53
+
+    (14) V -> id = false .
+
+    ;               reduce using rule 14 (V -> id = false .)
+
+
+state 54
+
+    (15) Lista -> [ . ListIn ]
+    (16) Lista -> [ . ]
+    (17) ListIn -> . numInt , ListIn
+    (18) ListIn -> . numInt
+
+    ]               shift and go to state 77
+    numInt          shift and go to state 78
+
+    ListIn                         shift and go to state 76
+
 state 55
 
     (9) Inst -> se Comp fazer : . S fim
@@ -1046,23 +1046,23 @@ state 55
     (3) LstI -> . LstI InstC
     (4) LstI -> . Inst ;
     (5) LstI -> . InstC
-    (8) Inst -> . V
+    (6) Inst -> . V
     (9) Inst -> . se Comp fazer : S fim
-    (6) InstC -> . comentarioOne
-    (7) InstC -> . comentarioMult
+    (22) Inst -> . escrever ( Texto )
+    (23) Inst -> . id = entrada ( )
+    (7) InstC -> . comentarioOne
+    (8) InstC -> . comentarioMult
     (10) V -> . id = E
     (11) V -> . id = texto
     (12) V -> . id = Lista
     (13) V -> . id = true
     (14) V -> . id = false
-    (22) V -> . escrever ( Texto )
-    (23) V -> . id = entrada ( )
 
     se              shift and go to state 6
-    comentarioOne   shift and go to state 7
-    comentarioMult  shift and go to state 8
-    id              shift and go to state 9
-    escrever        shift and go to state 10
+    escrever        shift and go to state 7
+    id              shift and go to state 8
+    comentarioOne   shift and go to state 9
+    comentarioMult  shift and go to state 10
 
     S                              shift and go to state 79
     LstI                           shift and go to state 2
@@ -1125,7 +1125,7 @@ state 58
 
     true            shift and go to state 17
     false           shift and go to state 18
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1157,7 +1157,7 @@ state 59
 
     true            shift and go to state 17
     false           shift and go to state 18
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1199,7 +1199,7 @@ state 61
 
     true            shift and go to state 17
     false           shift and go to state 18
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1241,7 +1241,7 @@ state 63
 
     true            shift and go to state 17
     false           shift and go to state 18
-    (               shift and go to state 50
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
@@ -1377,13 +1377,6 @@ state 71
 
 state 72
 
-    (23) V -> id = entrada ( . )
-
-    )               shift and go to state 86
-
-
-state 73
-
     (30) F -> ( E . )
     (24) E -> E . + T
     (25) E -> E . - T
@@ -1393,41 +1386,48 @@ state 73
     -               shift and go to state 39
 
 
+state 73
+
+    (22) Inst -> escrever ( Texto ) .
+
+    ;               reduce using rule 22 (Inst -> escrever ( Texto ) .)
+
+
 state 74
 
-    (15) Lista -> [ ListIn . ]
+    (21) Texto -> Texto < . > Texto
 
-    ]               shift and go to state 87
+    >               shift and go to state 86
 
 
 state 75
+
+    (23) Inst -> id = entrada ( . )
+
+    )               shift and go to state 87
+
+
+state 76
+
+    (15) Lista -> [ ListIn . ]
+
+    ]               shift and go to state 88
+
+
+state 77
 
     (16) Lista -> [ ] .
 
     ;               reduce using rule 16 (Lista -> [ ] .)
 
 
-state 76
+state 78
 
     (17) ListIn -> numInt . , ListIn
     (18) ListIn -> numInt .
 
-    ,               shift and go to state 88
+    ,               shift and go to state 89
     ]               reduce using rule 18 (ListIn -> numInt .)
-
-
-state 77
-
-    (22) V -> escrever ( Texto ) .
-
-    ;               reduce using rule 22 (V -> escrever ( Texto ) .)
-
-
-state 78
-
-    (21) Texto -> Texto < . > Texto
-
-    >               shift and go to state 89
 
 
 state 79
@@ -1517,30 +1517,6 @@ state 85
 
 state 86
 
-    (23) V -> id = entrada ( ) .
-
-    ;               reduce using rule 23 (V -> id = entrada ( ) .)
-
-
-state 87
-
-    (15) Lista -> [ ListIn ] .
-
-    ;               reduce using rule 15 (Lista -> [ ListIn ] .)
-
-
-state 88
-
-    (17) ListIn -> numInt , . ListIn
-    (17) ListIn -> . numInt , ListIn
-    (18) ListIn -> . numInt
-
-    numInt          shift and go to state 76
-
-    ListIn                         shift and go to state 91
-
-state 89
-
     (21) Texto -> Texto < > . Texto
     (19) Texto -> . texto
     (20) Texto -> . E
@@ -1558,17 +1534,41 @@ state 89
     (34) F -> . id [ numInt ]
     (35) F -> . aleatorio ( numInt )
 
-    texto           shift and go to state 53
-    (               shift and go to state 50
+    texto           shift and go to state 46
+    (               shift and go to state 44
     numInt          shift and go to state 22
     numF            shift and go to state 23
     id              shift and go to state 24
     aleatorio       shift and go to state 25
 
-    Texto                          shift and go to state 92
-    E                              shift and go to state 54
+    Texto                          shift and go to state 91
+    E                              shift and go to state 47
     T                              shift and go to state 20
     F                              shift and go to state 21
+
+state 87
+
+    (23) Inst -> id = entrada ( ) .
+
+    ;               reduce using rule 23 (Inst -> id = entrada ( ) .)
+
+
+state 88
+
+    (15) Lista -> [ ListIn ] .
+
+    ;               reduce using rule 15 (Lista -> [ ListIn ] .)
+
+
+state 89
+
+    (17) ListIn -> numInt , . ListIn
+    (17) ListIn -> . numInt , ListIn
+    (18) ListIn -> . numInt
+
+    numInt          shift and go to state 78
+
+    ListIn                         shift and go to state 92
 
 state 90
 
@@ -1579,21 +1579,21 @@ state 90
 
 state 91
 
-    (17) ListIn -> numInt , ListIn .
-
-    ]               reduce using rule 17 (ListIn -> numInt , ListIn .)
-
-
-state 92
-
     (21) Texto -> Texto < > Texto .
     (21) Texto -> Texto . < > Texto
 
   ! shift/reduce conflict for < resolved as shift
     )               reduce using rule 21 (Texto -> Texto < > Texto .)
-    <               shift and go to state 78
+    <               shift and go to state 74
 
   ! <               [ reduce using rule 21 (Texto -> Texto < > Texto .) ]
+
+
+state 92
+
+    (17) ListIn -> numInt , ListIn .
+
+    ]               reduce using rule 17 (ListIn -> numInt , ListIn .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -1602,4 +1602,4 @@ WARNING: shift/reduce conflict for and in state 56 resolved as shift
 WARNING: shift/reduce conflict for or in state 56 resolved as shift
 WARNING: shift/reduce conflict for and in state 57 resolved as shift
 WARNING: shift/reduce conflict for or in state 57 resolved as shift
-WARNING: shift/reduce conflict for < in state 92 resolved as shift
+WARNING: shift/reduce conflict for < in state 91 resolved as shift

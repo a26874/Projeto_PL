@@ -42,14 +42,14 @@ class Grammar:
                  | InstC"""
         p[0] = dict(op='seq', args=[p[1]])
 
+    def p_Inst(self, p):
+        """ Inst : V """
+        p[0] = {'op': 'seq', "args": [p[1]]}
+
     def p_comment(self, p):
         """ InstC : comentarioOne
                   | comentarioMult"""
         p[0] = dict(op='seq', args=[p[1]])
-
-    def p_Inst(self, p):
-        """ Inst : V """
-        p[0] = {'op': 'seq', "args": [p[1]]}
 
     def p_inst_se(self, p):
         """ Inst : se Comp fazer ':' S fim"""
@@ -152,7 +152,7 @@ class Grammar:
             p[0].append(p[4])
 
     def p_esc(self, p):
-        """ V : escrever "(" Texto ")"  """
+        """ Inst  : escrever "(" Texto ")"  """
         if not isinstance(p[3], list):
             p[3] = [p[3]]
         p[0] = {'op': 'esc',
@@ -161,7 +161,7 @@ class Grammar:
     # input
 
     def p_ent(self, p):
-        """ V : id '=' entrada '(' ')'  """
+        """ Inst  : id '=' entrada '(' ')'  """
         p[0] = {'op': 'atr',
                 'args': [p[1], "input"]}
 

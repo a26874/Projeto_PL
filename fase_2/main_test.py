@@ -12,7 +12,8 @@ mult_3! = a1_ * 3 ;
 ESCREVER(mult_3!);""")
 
 resultado = Eval.evaluate(res)
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 ## EXEMPLO B 1
 
@@ -24,7 +25,8 @@ curso = "ESI";
 ESCREVER("Ola, "<> curso);""")
 
 resultado = Eval.evaluate(res)
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 ## EXEMPLO B 2
 
@@ -35,7 +37,8 @@ inst = "IPCA";
 ESCREVER ("Ola, #{escola} #{inst}!");""")
 
 resultado = Eval.evaluate(res)
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 # EXEMPLO B 3
 
@@ -44,7 +47,8 @@ ate10 = ALEATORIO(10);
 ESCREVER ("#{valor}! #{ate10}!");""")
 
 resultado = Eval.evaluate(res)
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 ## EXEMPLO D 1
 
@@ -55,7 +59,8 @@ vazia = [] ;
 ESCREVER( vazia );""")
 
 resultado = Eval.evaluate(res)
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 # SE ==
 
@@ -95,7 +100,8 @@ res = lg.parse("""SE True == False FAZER:
 
 resultado = Eval.evaluate(res)
 
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 # SE > >= < <=
 
@@ -144,7 +150,8 @@ res = lg.parse("""a = 1;
 
 resultado = Eval.evaluate(res)
 
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+
+print( "\n"+"=_="*40+ "\n")
 
 # SE /\ \/
 
@@ -174,4 +181,4 @@ res = lg.parse("""a = 1;
 
 resultado = Eval.evaluate(res)
 
-print("\n=_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_==_=\n")
+print( "\n"+"=_="*40+ "\n")

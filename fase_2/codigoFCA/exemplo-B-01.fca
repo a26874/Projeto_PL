@@ -1,0 +1,6 @@
+valor = "ola";
+ESCREVER(valor); -- conteúdo de valor é apresentado
+ESCREVER(365 * 2); -- 730
+ESCREVER("Ola Mundo"); -- Ola, Mundo!
+curso = "ESI";
+ESCREVER("Ola, "<> curso);

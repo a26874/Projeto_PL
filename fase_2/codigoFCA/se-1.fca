@@ -1,0 +1,32 @@
+SE True == False FAZER:
+               ESCREVER("ola1");
+               FIM;
+               SE True == True FAZER:
+               ESCREVER("ola2");
+               FIM;
+               a = 1;
+               b = 1;
+               SE a == b FAZER:
+               ESCREVER("ola3");
+               FIM;
+               a = 2;
+               b = 3;
+               SE a == b FAZER:
+               ESCREVER("ola4");
+               FIM;
+               SE True != False FAZER:
+               ESCREVER("adeus1");
+               FIM;
+               SE True != True FAZER:
+               ESCREVER("adeus2");
+               FIM;
+               a = 1;
+               b = 1;
+               SE a != b FAZER:
+               ESCREVER("adeus3");
+               FIM;
+               a = 2;
+               b = 3;
+               SE a != b FAZER:
+               ESCREVER("adeus4");
+               FIM;

@@ -1,0 +1,42 @@
+a = 1;
+               b = 1;
+               SE a > b FAZER:
+               ESCREVER("ola1");
+               FIM;
+               SE a >= b FAZER:
+               ESCREVER("ola2");
+               FIM;
+               SE a < b FAZER:
+               ESCREVER("ola3");
+               FIM;
+               SE a <= b FAZER:
+               ESCREVER("ola4");
+               FIM;
+               a = 2;
+               b = 3;
+               SE a > b FAZER:
+               ESCREVER("oi1");
+               FIM;
+               SE a >= b FAZER:
+               ESCREVER("oi2");
+               FIM;
+               SE a < b FAZER:
+               ESCREVER("oi3");
+               FIM;
+               SE a <= b FAZER:
+               ESCREVER("oi4");
+               FIM;
+               a = 4;
+               b = 2;
+               SE a > b FAZER:
+               ESCREVER("adeus1");
+               FIM;
+               SE a >= b FAZER:
+               ESCREVER("adeus2");
+               FIM;
+               SE a < b FAZER:
+               ESCREVER("adeus3");
+               FIM;
+               SE a <= b FAZER:
+               ESCREVER("adeus4");
+               FIM;
